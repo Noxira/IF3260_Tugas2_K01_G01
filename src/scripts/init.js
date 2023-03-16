@@ -19,7 +19,7 @@ function init() {
     }
 
     //Set the Canvas
-    gl.clearColor(0.9296875, 0.91015625, 0.8515625, 1.0);
+    gl.clearColor(1.0, 1.0, 1.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     //Create Shadder

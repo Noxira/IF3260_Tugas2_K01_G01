@@ -1,0 +1,56 @@
+body {
+    min-width: 1920/2;
+    min-height: 1080/2;
+}
+
+.title > h1 {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.gui {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.left-div {
+    align-self: flex-start
+}
+
+.center-div {
+    align-self: center;
+}
+
+.right-div {
+    align-self: flex-end;
+}
+
+.gui > div {
+    margin: 10px;
+}
+
+.toolbar {
+    margin: 0px;
+    width: 20vw;
+    min-width: 300px;
+    min-height: 600px;
+    height: 42.5vw;
+    width: 20vw;
+    border: 2px solid black;
+    background-color: white;
+}
+
+.canvas > canvas {
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 10px;
+    min-width: 500px;
+    min-height: 500px;
+    height: 35vw;
+    width: 35vw;
+}
