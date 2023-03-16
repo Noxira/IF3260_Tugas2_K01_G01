@@ -33,7 +33,7 @@ sliderZ.addEventListener("input",function(e){
 
 
 // Dummy data
-triplePlaneShape = new Shape(triplePlane,[0,0,1],gl.TRIANGLE_FAN)
-shapes[triplePlaneShape.id] = triplePlaneShape
-console.log(triplePlaneShape.id)
+triplePrismShape = new Shape(triplePrism,[0,0,1],gl.TRIANGLE_FAN)
+shapes[triplePrismShape.id] = triplePrismShape
+console.log(triplePrismShape.id)
 redraw()

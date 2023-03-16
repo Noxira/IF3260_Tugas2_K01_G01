@@ -28,7 +28,7 @@ class Shape {
 
     rotateX(x){
         // Translate to -center
-        let center = getCenterPoint(this.vertices)
+        let center = getCenterPoint(this.getTransformedVertices())
         this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
 
         // Rotate
@@ -43,7 +43,7 @@ class Shape {
 
     rotateY(x){
         // Translate to -center
-        let center = getCenterPoint(this.vertices)
+        let center = getCenterPoint(this.getTransformedVertices())
         this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
 
         // Rotate
@@ -57,7 +57,7 @@ class Shape {
 
     rotateZ(x){
         // Translate to -center
-        let center = getCenterPoint(this.vertices)
+        let center = getCenterPoint(this.getTransformedVertices())
         this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
 
         // Rotate
@@ -72,6 +72,19 @@ class Shape {
     translate(x,y,z){
         translationMatrix =  getTranslationMatrix(x,y,z)
         this.transformationMatrix = multiplyMatrix(translationMatrix,this.transformationMatrix)
+    }
+
+    getTransformedVertices(){
+        let vertices = []
+        for(let i=0;i<this.vertices.length;i+=12){
+            for(let j=0;j<12;j+=3){
+                let newVertex = [[this.vertices[i+j]],[this.vertices[i+j+1]],[this.vertices[i+j+2]],[1]]
+                let retMat = multiplyMatrix(this.transformationMatrix,newVertex)
+
+                vertices.push(retMat[0][0],retMat[1][0],retMat[2][0])
+            }
+        }
+        return vertices
     }
 
 }
