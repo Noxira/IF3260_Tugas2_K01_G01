@@ -7,6 +7,9 @@ class Shape {
         this.vertices = vertices
         this.color = color
         this.transformationMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+        this.curAngleX = 0
+        this.curAngleY = 0
+        this.curAngleZ = 0
     }
 
     materialize(){
@@ -24,18 +27,46 @@ class Shape {
     }
 
     rotateX(x){
-        rotationXMatrix = getRotationXMatrix(x)
+        // Translate to -center
+        let center = getCenterPoint(this.vertices)
+        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
+
+        // Rotate
+        let rotationXMatrix = getRotationXMatrix(x-this.curAngleX)
         this.transformationMatrix = multiplyMatrix(rotationXMatrix,this.transformationMatrix)
+        this.curAngleX = x
+
+        // Translate 
+        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(center[0],center[1],center[2]),this.transformationMatrix)
+
     }
 
     rotateY(x){
-        rotationYMatrix = getRotationYMatrix(x)
+        // Translate to -center
+        let center = getCenterPoint(this.vertices)
+        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
+
+        // Rotate
+        let rotationYMatrix = getRotationYMatrix(x-this.curAngleY)
         this.transformationMatrix = multiplyMatrix(rotationYMatrix,this.transformationMatrix)
+        this.curAngleY = x
+
+        // Translate 
+        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(center[0],center[1],center[2]),this.transformationMatrix)
     }
 
     rotateZ(x){
-        rotationZMatrix = getRotationZMatrix(x)
+        // Translate to -center
+        let center = getCenterPoint(this.vertices)
+        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
+
+        // Rotate
+        let rotationZMatrix = getRotationZMatrix(x-this.curAngleZ)
         this.transformationMatrix = multiplyMatrix(rotationZMatrix,this.transformationMatrix)
+        this.curAngleZ = x
+
+        // Translate 
+        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(center[0],center[1],center[2]),this.transformationMatrix)
     }
 
     translate(x,y,z){
