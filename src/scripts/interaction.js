@@ -8,7 +8,7 @@ function redraw(){
 }
 
 var sliderX = document.getElementById("sliderRotationX")
-sliderX.addEventListener("change",function(e){
+sliderX.addEventListener("input",function(e){
     if(choosenShapeID != null){
         shapes[choosenShapeID].rotateX(sliderX.value)
         redraw()
@@ -16,7 +16,7 @@ sliderX.addEventListener("change",function(e){
 })
 
 var sliderY = document.getElementById("sliderRotationY")
-sliderY.addEventListener("change",function(e){
+sliderY.addEventListener("input",function(e){
     if(choosenShapeID != null){
         shapes[choosenShapeID].rotateY(sliderY.value)
         redraw()
@@ -24,7 +24,7 @@ sliderY.addEventListener("change",function(e){
 })
 
 var sliderZ = document.getElementById("sliderRotationZ")
-sliderZ.addEventListener("change",function(e){
+sliderZ.addEventListener("input",function(e){
     if(choosenShapeID != null){
         shapes[choosenShapeID].rotateZ(sliderZ.value)
         redraw()
