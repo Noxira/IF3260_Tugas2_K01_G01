@@ -7,6 +7,8 @@ var program = gl.createProgram();
 var vertexBuffer = gl.createBuffer();
 var positionAttribLocation;
 var colorAttribLocation;
+var normalAttribLocation;
+var reverseLightDirectionLocation;
 var shadderSource;
 
 
@@ -26,22 +28,31 @@ function init() {
     const shadderSource = {
         vertexShaderSource: `#version 300 es
         in vec3 vertPosition;
-        in vec4 vertColor;
+        in vec3 vertColor;
+        in vec3 a_normal;
         out vec4 fragColor;
+        out vec3 vnormal;
     
         void main() {
-            fragColor = vertColor;
+            fragColor = vec4(vertColor,1);
             gl_PointSize = 20.0;
             gl_Position = vec4(vertPosition, 1);
+
+            vnormal = a_normal;
         }`,
 
         fragmentShaderSource: `#version 300 es
         precision mediump float;
+        in vec3 vnormal;
         in vec4 fragColor;
         out vec4 outColor;
     
         void main() {
             outColor = fragColor;
+            
+            vec3 vReverseLightDir = vec3(0.0,0.0,1.0);
+            float ratio = max(dot(vnormal,vReverseLightDir),0.0f);
+            outColor.rgb *= ratio;
         }`
     }
     gl.shaderSource(vertexShader, shadderSource.vertexShaderSource);
@@ -68,7 +79,7 @@ function init() {
         3,                                      //3 float per vertex (XYZ)
         gl.FLOAT,
         gl.FALSE,
-        6 * Float32Array.BYTES_PER_ELEMENT,     //1 vertex = 7 float (XYZRGB)
+        9 * Float32Array.BYTES_PER_ELEMENT,     //1 vertex = 9 float (XYZRGBN1N2N3)
         0                                       //Position start from the first element
     );
 
@@ -79,13 +90,32 @@ function init() {
         3,                                      //3 float per vertex (RGB)
         gl.FLOAT,
         gl.FALSE,
-        6 * Float32Array.BYTES_PER_ELEMENT,     //1 vertex = 6 float (XYRGB)
+        9 * Float32Array.BYTES_PER_ELEMENT,     //1 vertex = 9 float (XYZRGBN1N2N3)
         3 * Float32Array.BYTES_PER_ELEMENT      //Color start from the fourth element
     );
 
+    // Create normal attribute
+    normalAttribLocation = gl.getAttribLocation(program, "a_normal");
+    gl.vertexAttribPointer(
+        normalAttribLocation,
+        3,                                      //3 float per vertex (N1N2N3)
+        gl.FLOAT,
+        gl.FALSE,
+        9 * Float32Array.BYTES_PER_ELEMENT,     //1 vertex = 9 float (XYRGBN1N2N3)
+        6 * Float32Array.BYTES_PER_ELEMENT      //Normals start from the fourth element
+    );
+
+    
     //Enable the attribute
     gl.enableVertexAttribArray(positionAttribLocation);
     gl.enableVertexAttribArray(colorAttribLocation);
+    gl.enableVertexAttribArray(normalAttribLocation);
+
+    if ( !gl.getProgramParameter( program, gl.LINK_STATUS) ) {
+        var info = gl.getProgramInfoLog(program);
+        throw new Error('Could not compile WebGL program. \n\n' + info);
+      }
+      
 
     //Start the program
     gl.useProgram(program);

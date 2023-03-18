@@ -1,10 +1,11 @@
 class Shape {
     static ID = 0
 
-    constructor(vertices,color,webGLShape){
+    constructor(vertices,normal,color,webGLShape){
         this.id = Shape.ID++
         this.webGLShape = webGLShape
         this.vertices = vertices
+        this.normal = normal;
         this.color = color
         this.transformationMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
         this.curAngleX = 0
@@ -13,13 +14,13 @@ class Shape {
     }
 
     materialize(){
+        let vertices = this.getTransformedVertices()
+        let normal = this.getTransformedNormal()
+        console.log(vertices.length,normal.length)
         for(let i=0;i<this.vertices.length;i+=12){
             let verticesToDraw = []
             for(let j=0;j<12;j+=3){
-                let newVertex = [[this.vertices[i+j]],[this.vertices[i+j+1]],[this.vertices[i+j+2]],[1]]
-                let retMat = multiplyMatrix(this.transformationMatrix,newVertex)
-
-                verticesToDraw.push(retMat[0][0],retMat[1][0],retMat[2][0],this.color[0],this.color[1],this.color[2])
+                verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],this.color[0],this.color[1],this.color[2],normal[i+j],normal[i+j+1],normal[i+j+2]);
             }
             gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(verticesToDraw),gl.STATIC_DRAW)
             gl.drawArrays(this.webGLShape,0,4)
@@ -86,5 +87,16 @@ class Shape {
         }
         return vertices
     }
+    getTransformedNormal(){
+        let normal = []
+        for(let i=0;i<this.normal.length;i+=12){
+            for(let j=0;j<12;j+=3){
+                let newNormal = [[this.normal[i+j]],[this.normal[i+j+1]],[this.normal[i+j+2]],[0]]
+                let retMat = multiplyMatrix(this.transformationMatrix,newNormal)
 
+                normal.push(retMat[0][0],retMat[1][0],retMat[2][0])
+            }
+        }
+        return normal
+    }
 }
