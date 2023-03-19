@@ -16,6 +16,14 @@
         <div class="gui">
             <div class="toolbar left-div">
                 <div>
+                    <label>Object</label>
+                    <select id="objectlist" name="objectlist" onchange="updateObjectChosen()">
+                        <option value="0" selected>TriplePrism</option>
+                        <option value="1">Hollow Pyramid</option>
+                        <option value="2">To Be Implemented</option>
+                    </select>
+                </div>
+                <div>
                     <label>Angle X</label>
                     <input type="range" name="sliderRotationX" id="sliderRotationX" min="-180" max="180" value="0">
                 </div>

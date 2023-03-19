@@ -1,3 +1,6 @@
+let objectPicker = document.getElementById('objectlist');
+objectPicker.selectedIndex = 0;
+
 function toRad(x){
     return x/(180/Math.PI)
 }
@@ -59,4 +62,9 @@ function getCenterPoint(vertices){
 function getTranslationMatrix(x,y,z){
     mat = [[1,0,0,x],[0,1,0,y],[0,0,1,z],[0,0,0,1]]
     return mat
+}
+
+function updateObjectChosen(){
+    choosenShapeID = objectPicker.value
+    console.log(choosenShapeID);
 }

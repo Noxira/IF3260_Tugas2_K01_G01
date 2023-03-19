@@ -1,4 +1,4 @@
-var choosenShapeID = 1
+var choosenShapeID = 0
 shapes = {}
 
 function redraw(){
