@@ -99,4 +99,8 @@ class Shape {
         }
         return normal
     }
+
+    setId(id){
+        this.id = id
+    }
 }
