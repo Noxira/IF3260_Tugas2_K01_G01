@@ -14,13 +14,15 @@ class Shape {
     }
 
     materialize(){
-        let vertices = this.getTransformedVertices()
+        let vertices = this.vertices
         let normal = this.getTransformedNormal()
-        console.log(vertices.length,normal.length)
-        for(let i=0;i<this.vertices.length;i+=12){
+        console.log(vertices)
+        gl.uniformMatrix4fv(modelMatrixLocation, false, flatten(this.transformationMatrix));
+        for(let i=0;i<vertices.length;i+=12){
             let verticesToDraw = []
             for(let j=0;j<12;j+=3){
                 verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],this.color[0],this.color[1],this.color[2],normal[i+j],normal[i+j+1],normal[i+j+2]);
+                console.log(normal[i+j],normal[i+j+1],normal[i+j+2])
             }
             gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(verticesToDraw),gl.STATIC_DRAW)
             gl.drawArrays(this.webGLShape,0,4)

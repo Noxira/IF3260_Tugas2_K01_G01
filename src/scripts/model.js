@@ -6,21 +6,25 @@ const d = 0.07/2
 var baseTriplePrism = [
     // vertical plane
     // 1. front side
-    -w,-l,-z,   w,-l,-z,  w,-l+d,-z,   -w,-l+d,-z,
-    -w,l,-z,   w,l,-z,   w,l-d,-z,  -w,l-d,-z,
-    -w,-l,-z,  -w+d,-l,-z,  -w+d,l,-z,  -w,l,-z,
-    w,-l,-z,  w-d,-l,-z,  w-d,l,-z,  w,l,-z,
+    -w,-l,-d,   w,-l,-d,  w,-l+d,-d,   -w,-l+d,-d,
+    -w,l-d,-d,   w,l-d,-d,  w,l,-d,  -w,l,-d,
+    -w,-l,-d,  -w+d,-l,-d,  -w+d,l,-d,  -w,l,-d,
+    w,l,-d,  w-d,l,-d,  w-d,-l,-d,  w,-l,-d,  
     // 2. back side
-    -w,-l,-z-d,   w,-l,-z-d,  w,-l+d,-z-d,   -w,-l+d,-z-d,
-    -w,l,-z-d,   w,l,-z-d,   w,l-d,-z-d,  -w,l-d,-z-d,
-    -w,-l,-z-d,  -w+d,-l,-z-d,  -w+d,l,-z-d,  -w,l,-z-d,
-    w,-l,-z-d,  w-d,-l,-z-d,  w-d,l,-z-d,  w,l,-z-d,
+    -w,-l,d,   w,-l,d,  w,-l+d,d,   -w,-l+d,d,
+    -w,l-d,d,   w,l-d,d,  w,l,d,  -w,l,d,
+    -w,-l,d,  -w+d,-l,d,  -w+d,l,d,  -w,l,d,
+    w,l,d,  w-d,l,d,  w-d,-l,d,  w,-l,d,
     // 3. edge out side
-    -w,-l,-z-d,  w,-l,-z-d,  w,-l,-z,  -w,-l,-z,
-    -w,l,-z,  w,l,-z,  w,l,-z-d,  -w,l,-z-d,
-    -w,-l,-z-d,  -w,-l,-z,  -w,l,-z,  -w,l,-z-d,
-    w,-l,-z-d,  w,-l,-z,  w,l,-z,  w,l,-z-d,
+    -w,-l,-d,  w,-l,-d,  w,-l,d,  -w,-l,d,
+    -w,l,d,  w,l,d,  w,l,-d,  -w,l,-d,
+    -w,-l,-d,  -w,-l,d,  -w,l,d,  -w,l,-d,
+    w,-l,-d,  w,-l,d,  w,l,d,  w,l,-d,
     // 3. edge in side
+    -w+d,-l+d,-d,  w-d,-l+d,-d,  w-d,-l+d,d,  -w+d,-l+d,d,
+    -w+d,l-d,d,  w-d,l-d,d,  w-d,l-d,-d,  -w+d,l-d,-d,
+    -w+d,-l+d,-d,  -w+d,-l+d,d,  -w+d,l-d,d,  -w+d,l-d,-d,
+    w-d,-l+d,-d,  w-d,-l+d,d,  w-d,l-d,d,  w-d,l-d,-d
 ]
 
 var baseNormalTriplePrism = [
@@ -39,16 +43,26 @@ var baseNormalTriplePrism = [
     0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
     0,1,0,  0,1,0,  0,1,0,  0,1,0,
     -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
-    1,0,0,  1,0,0,  1,0,0,  1,0,0
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    // 3. edge out side
+    0,1,0,  0,1,0,  0,1,0,  0,1,0,
+    0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0
 ]
 
-var cek = [1,2,3]
-
-var triplePrism = baseTriplePrism
-var normalTriplePrism = baseNormalTriplePrism
+var triplePrism = []
+for(let i=0;i<baseTriplePrism.length;i++){
+    triplePrism.push(baseTriplePrism[i])
+}
+var normalTriplePrism = []
+for(let i=0;i<baseNormalTriplePrism.length;i++){
+    normalTriplePrism.push(baseNormalTriplePrism[i])
+}
 
 
 function generateTriplePrism(){
+    console.log("lama",baseTriplePrism.length)
     let rotatedTriplePrism1 = new Shape(baseTriplePrism,baseNormalTriplePrism,[0,0,1],gl.TRIANGLE_FAN)
     rotatedTriplePrism1.rotateX(90)
     rotatedTriplePrism1.rotateY(90)
@@ -70,7 +84,8 @@ function generateTriplePrism(){
         triplePrism.push(vertices2[i])
         normalTriplePrism.push(normal2[i])
     }
-    let modifiedTriplePrism = new Shape(baseTriplePrism,normalTriplePrism,[0,0,1],gl.TRIANGLE_FAN)
+    console.log("baru",baseTriplePrism.length)
+    let modifiedTriplePrism = new Shape(triplePrism,normalTriplePrism,[0,0,1],gl.TRIANGLE_FAN)
     // modifiedTriplePrism.rotateX(20)
     // modifiedTriplePrism.rotateY(-58)
 

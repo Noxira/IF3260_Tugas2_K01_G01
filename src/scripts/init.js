@@ -9,6 +9,7 @@ var positionAttribLocation;
 var colorAttribLocation;
 var normalAttribLocation;
 var reverseLightDirectionLocation;
+var modelMatrixLocation;
 var shadderSource;
 
 
@@ -22,7 +23,11 @@ function init() {
 
     //Set the Canvas
     gl.clearColor(1.0, 1.0, 1.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    gl.enable(gl.DEPTH_TEST);
+
+    gl.depthFunc(gl.LEQUAL);
 
     //Create Shadder
     const shadderSource = {
@@ -30,13 +35,14 @@ function init() {
         in vec3 vertPosition;
         in vec3 vertColor;
         in vec3 a_normal;
+        uniform mat4 modelMatrix;
         out vec4 fragColor;
         out vec3 vnormal;
     
         void main() {
             fragColor = vec4(vertColor,1);
             gl_PointSize = 20.0;
-            gl_Position = vec4(vertPosition, 1);
+            gl_Position = modelMatrix * vec4(vertPosition, 1);
 
             vnormal = a_normal;
         }`,
@@ -104,6 +110,8 @@ function init() {
         9 * Float32Array.BYTES_PER_ELEMENT,     //1 vertex = 9 float (XYRGBN1N2N3)
         6 * Float32Array.BYTES_PER_ELEMENT      //Normals start from the fourth element
     );
+
+    modelMatrixLocation = gl.getUniformLocation(program,"modelMatrix")
 
     
     //Enable the attribute

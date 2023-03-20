@@ -33,6 +33,9 @@ sliderZ.addEventListener("input",function(e){
 
 
 // Dummy data
+console.log("panjang")
+console.log(triplePrism.length)
+console.log(normalTriplePrism.length)
 triplePrismShape = new Shape(triplePrism,normalTriplePrism,[0.2, 1, 0.2],gl.TRIANGLE_FAN)
 shapes[triplePrismShape.id] = triplePrismShape
 console.log(triplePrismShape.id)
