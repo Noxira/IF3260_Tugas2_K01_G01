@@ -44,11 +44,55 @@ var baseNormalTriplePrism = [
     0,1,0,  0,1,0,  0,1,0,  0,1,0,
     -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
     1,0,0,  1,0,0,  1,0,0,  1,0,0,
-    // 3. edge out side
+    // 3. edge in side
     0,1,0,  0,1,0,  0,1,0,  0,1,0,
     0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
     1,0,0,  1,0,0,  1,0,0,  1,0,0,
-    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+
+    // Horizontal 1 plane
+    // 1. front side
+    0,1,0,  0,1,0,  0,1,0,  0,1,0,
+    0,1,0,  0,1,0,  0,1,0,  0,1,0,
+    0,1,0,  0,1,0,  0,1,0,  0,1,0,
+    0,1,0,  0,1,0,  0,1,0,  0,1,0,
+    // 2. back side
+    0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
+    0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
+    0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
+    0,-1,0,  0,-1,0,  0,-1,0,  0,-1,0,
+    // 3. edge out side
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    0,0,-1,  0,0,-1,  0,0,-1,  0,0,-1,
+    0,0,1,  0,0,1,  0,0,1,  0,0,1,
+    // 3. edge in side
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    0,0,1,  0,0,1,  0,0,1,  0,0,1,
+    0,0,-1,  0,0,-1,  0,0,-1,  0,0,-1,
+
+    // Horizontal 2 plane
+    // 1. front side
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+    -1,0,0,  -1,0,0,  -1,0,0,  -1,0,0,
+    // 2. back side
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    1,0,0,  1,0,0,  1,0,0,  1,0,0,
+    // 3. edge out side
+    0,0,1,  0,0,1,  0,0,1,  0,0,1,
+    0,0,-1,  0,0,-1,  0,0,-1,  0,0,-1,
+    0,-1,0,  0,-1,0, 0,-1,0,  0,-1,0,
+    0,1,0,  0,1,0, 0,1,0,  0,1,0,
+    // edge in side
+    0,0,-1,  0,0,-1,  0,0,-1,  0,0,-1,
+    0,0,1,  0,0,1,  0,0,1,  0,0,1,
+    0,1,0,  0,1,0, 0,1,0,  0,1,0,
+    0,-1,0,  0,-1,0, 0,-1,0,  0,-1,0,
 ]
 
 var triplePrism = []
@@ -72,17 +116,13 @@ function generateTriplePrism(){
     rotatedTriplePrism2.rotateX(90)
 
     let vertices1 = rotatedTriplePrism1.getTransformedVertices()
-    let normal1 = rotatedTriplePrism1.getTransformedNormal()
     let vertices2 = rotatedTriplePrism2.getTransformedVertices()
-    let normal2 = rotatedTriplePrism2.getTransformedNormal()
 
     for(let i=0;i<vertices1.length;i++){
         triplePrism.push(vertices1[i])
-        normalTriplePrism.push(normal1[i])
     }
     for(let i=0;i<vertices2.length;i++){
         triplePrism.push(vertices2[i])
-        normalTriplePrism.push(normal2[i])
     }
     console.log("baru",baseTriplePrism.length)
     let modifiedTriplePrism = new Shape(triplePrism,normalTriplePrism,[0,0,1],gl.TRIANGLE_FAN)

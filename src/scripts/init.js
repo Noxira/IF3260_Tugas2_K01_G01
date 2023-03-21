@@ -57,8 +57,8 @@ function init() {
             outColor = fragColor;
             
             vec3 vReverseLightDir = vec3(0.0,0.0,1.0);
-            float ratio = max(dot(vnormal,vReverseLightDir),0.0f);
-            outColor.rgb *= ratio;
+            float ratio = 0.5 * max(dot(vnormal,vReverseLightDir),0.0f);
+            outColor.rgb *= ratio + 0.5;
         }`
     }
     gl.shaderSource(vertexShader, shadderSource.vertexShaderSource);

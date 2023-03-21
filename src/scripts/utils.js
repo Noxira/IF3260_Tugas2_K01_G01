@@ -6,7 +6,7 @@ function toRad(x){
 }
 
 function multiplyMatrix(m1,m2){
-    ret = []
+    let ret = []
     for(let i=0;i<m1.length;i++){
         ret.push([])
         for(let j=0;j<m2[0].length;j++){
@@ -24,7 +24,7 @@ function getRotationXMatrix(x){
     c = Math.cos(x)
     s = Math.sin(x)
 
-    mat = [[1,0,0,0],[0,c,-s,0],[0,s,c,0],[0,0,0,1]]
+    let mat = [[1,0,0,0],[0,c,-s,0],[0,s,c,0],[0,0,0,1]]
     return mat
 }
 
@@ -33,7 +33,7 @@ function getRotationYMatrix(x){
     c = Math.cos(x)
     s = Math.sin(x)
 
-    mat = [[c,0,s,0],[0,1,0,0],[-s,0,c,0],[0,0,0,1]]
+    let mat = [[c,0,s,0],[0,1,0,0],[-s,0,c,0],[0,0,0,1]]
     return mat
 }
 
@@ -42,12 +42,12 @@ function getRotationZMatrix(x){
     c = Math.cos(x)
     s = Math.sin(x)
 
-    mat = [[c,-s,0,0],[s,c,0,0],[0,0,1,0],[0,0,0,1]]
+    let mat = [[c,-s,0,0],[s,c,0,0],[0,0,1,0],[0,0,0,1]]
     return mat
 }
 
 function getCenterPoint(vertices){
-    ret = [0,0,0]
+    let ret = [0,0,0]
     for(let i=0;i<vertices.length;i+=3){
         for(let j=0;j<3;j++){
             ret[j] += vertices[i+j]

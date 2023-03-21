@@ -20,6 +20,23 @@ class Shape {
         gl.uniformMatrix4fv(modelMatrixLocation, false, flatten(this.transformationMatrix));
         for(let i=0;i<vertices.length;i+=12){
             let verticesToDraw = []
+            // if(Math.floor(i/12)%4==0){
+            //     for(let j=0;j<12;j+=3){
+            //         verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],1,0,0,0,0,1);
+            //     }
+            // }else if(Math.floor(i/12)%4==1){
+            //     for(let j=0;j<12;j+=3){
+            //         verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],0,1,0,0,0,1);
+            //     }
+            // }else if(Math.floor(i/12)%4==2){
+            //     for(let j=0;j<12;j+=3){
+            //         verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],0,0,1,0,0,1);
+            //     }
+            // }else if(Math.floor(i/12)%4==3){
+            //     for(let j=0;j<12;j+=3){
+            //         verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],1,0,1,0,0,1);
+            //     }
+            // }
             for(let j=0;j<12;j+=3){
                 verticesToDraw.push(vertices[i+j],vertices[i+j+1],vertices[i+j+2],this.color[0],this.color[1],this.color[2],normal[i+j],normal[i+j+1],normal[i+j+2]);
                 console.log(normal[i+j],normal[i+j+1],normal[i+j+2])
@@ -34,6 +51,7 @@ class Shape {
         let center = getCenterPoint(this.getTransformedVertices())
         this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
 
+        console.log(this.curAngleX,this.curAngleY,this.curAngleZ)
         // Rotate
         let rotationXMatrix = getRotationXMatrix(x-this.curAngleX)
         this.transformationMatrix = multiplyMatrix(rotationXMatrix,this.transformationMatrix)
@@ -50,6 +68,7 @@ class Shape {
         this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
 
         // Rotate
+        console.log(this.curAngleX,this.curAngleY,this.curAngleZ)
         let rotationYMatrix = getRotationYMatrix(x-this.curAngleY)
         this.transformationMatrix = multiplyMatrix(rotationYMatrix,this.transformationMatrix)
         this.curAngleY = x
@@ -64,6 +83,7 @@ class Shape {
         this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0],-center[1],-center[2]),this.transformationMatrix)
 
         // Rotate
+        console.log(this.curAngleX,this.curAngleY,this.curAngleZ)
         let rotationZMatrix = getRotationZMatrix(x-this.curAngleZ)
         this.transformationMatrix = multiplyMatrix(rotationZMatrix,this.transformationMatrix)
         this.curAngleZ = x
