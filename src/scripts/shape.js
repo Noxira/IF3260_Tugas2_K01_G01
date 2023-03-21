@@ -16,7 +16,6 @@ class Shape {
     materialize(){
         let vertices = this.vertices
         let normal = this.getTransformedNormal()
-        console.log(vertices)
         gl.uniformMatrix4fv(modelMatrixLocation, false, flatten(this.transformationMatrix));
         for(let i=0;i<vertices.length;i+=12){
             let verticesToDraw = []
@@ -111,10 +110,11 @@ class Shape {
     }
     getTransformedNormal(){
         let normal = []
+        let invTransposeMat = transpose(inverse(this.transformationMatrix))
         for(let i=0;i<this.normal.length;i+=12){
             for(let j=0;j<12;j+=3){
                 let newNormal = [[this.normal[i+j]],[this.normal[i+j+1]],[this.normal[i+j+2]],[0]]
-                let retMat = multiplyMatrix(this.transformationMatrix,newNormal)
+                let retMat = multiplyMatrix(invTransposeMat,newNormal)
 
                 normal.push(retMat[0][0],retMat[1][0],retMat[2][0])
             }
