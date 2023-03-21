@@ -2,6 +2,7 @@ var choosenShapeID = 0
 shapes = {}
 var lastViewAngle = 0
 var viewMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+var currentRadius = 2.5;
 
 function redraw(){
     for(let id in shapes){
@@ -35,9 +36,36 @@ sliderZ.addEventListener("input",function(e){
 
 var sliderCamera = document.getElementById("sliderRotationCamera")
 sliderCamera.addEventListener("input",function(e){
+    let center = [0,0,2.5-currentRadius]
+
+    let translationMatrix1 = getTranslationMatrix(-center[0],-center[1],-center[2])
+    viewMatrix = multiplyMatrix(translationMatrix1,viewMatrix)
+
     let rotationViewMatrix = getRotationYMatrix(sliderCamera.value-lastViewAngle)
     viewMatrix = multiplyMatrix(rotationViewMatrix,viewMatrix)
+
+    let translationMatrix2 = getTranslationMatrix(center[0],center[1],center[2])
+    viewMatrix = multiplyMatrix(translationMatrix2,viewMatrix)
+
     lastViewAngle = sliderCamera.value
+
+    redraw()
+})
+
+var sliderZoom = document.getElementById("sliderZoomCamera")
+sliderZoom.addEventListener("input",function(e){
+    currentRadius = 2.5-sliderZoom.value/40
+    
+    let center = [0,0,2.5-currentRadius]
+
+    viewMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+
+    let rotationViewMatrix = getRotationYMatrix(lastViewAngle)
+    viewMatrix = multiplyMatrix(rotationViewMatrix,viewMatrix)
+
+    let translationMatrix2 = getTranslationMatrix(center[0],center[1],center[2])
+    viewMatrix = multiplyMatrix(translationMatrix2,viewMatrix)
+
     redraw()
 })
 
