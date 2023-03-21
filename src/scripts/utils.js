@@ -66,7 +66,6 @@ function getTranslationMatrix(x,y,z){
 
 function updateObjectChosen(){
     choosenShapeID = objectPicker.value
-    console.log(choosenShapeID);
 }
 
 function flatten(mat){

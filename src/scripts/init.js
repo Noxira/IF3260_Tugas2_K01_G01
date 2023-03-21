@@ -10,6 +10,7 @@ var colorAttribLocation;
 var normalAttribLocation;
 var reverseLightDirectionLocation;
 var modelMatrixLocation;
+var viewMatrixLocation;
 var shadderSource;
 
 
@@ -36,13 +37,14 @@ function init() {
         in vec3 vertColor;
         in vec3 a_normal;
         uniform mat4 modelMatrix;
+        uniform mat4 viewMatrix;
         out vec4 fragColor;
         out vec3 vnormal;
     
         void main() {
             fragColor = vec4(vertColor,1);
             gl_PointSize = 20.0;
-            gl_Position = modelMatrix * vec4(vertPosition, 1);
+            gl_Position = viewMatrix * modelMatrix * vec4(vertPosition, 1);
 
             vnormal = a_normal;
         }`,
@@ -112,7 +114,7 @@ function init() {
     );
 
     modelMatrixLocation = gl.getUniformLocation(program,"modelMatrix")
-
+    viewMatrixLocation = gl.getUniformLocation(program,"viewMatrix")
     
     //Enable the attribute
     gl.enableVertexAttribArray(positionAttribLocation);

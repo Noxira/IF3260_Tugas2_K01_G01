@@ -1,5 +1,7 @@
 var choosenShapeID = 0
 shapes = {}
+var lastViewAngle = 0
+var viewMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
 
 function redraw(){
     for(let id in shapes){
@@ -31,14 +33,18 @@ sliderZ.addEventListener("input",function(e){
     }
 })
 
+var sliderCamera = document.getElementById("sliderRotationCamera")
+sliderCamera.addEventListener("input",function(e){
+    let rotationViewMatrix = getRotationYMatrix(sliderCamera.value-lastViewAngle)
+    viewMatrix = multiplyMatrix(rotationViewMatrix,viewMatrix)
+    lastViewAngle = sliderCamera.value
+    redraw()
+})
+
 
 // Dummy data
-console.log("panjang")
-console.log(triplePrism.length)
-console.log(normalTriplePrism.length)
 triplePrismShape = new Shape(triplePrism,normalTriplePrism,[0.2, 1, 0.2],gl.TRIANGLE_FAN)
 shapes[triplePrismShape.id] = triplePrismShape
-console.log(triplePrismShape.id)
 simplePyramidShape = new Shape(simplePyramidVertices(),normalTriplePrism,[0.2, 1, 0.2],gl.TRIANGLE_FAN)
 simplePyramidShape.setId(1);
 shapes[simplePyramidShape.id] = simplePyramidShape

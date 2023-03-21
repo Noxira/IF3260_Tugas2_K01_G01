@@ -106,7 +106,6 @@ for(let i=0;i<baseNormalTriplePrism.length;i++){
 
 
 function generateTriplePrism(){
-    console.log("lama",baseTriplePrism.length)
     let rotatedTriplePrism1 = new Shape(baseTriplePrism,baseNormalTriplePrism,[0,0,1],gl.TRIANGLE_FAN)
     rotatedTriplePrism1.rotateX(90)
     rotatedTriplePrism1.rotateY(90)
@@ -124,10 +123,9 @@ function generateTriplePrism(){
     for(let i=0;i<vertices2.length;i++){
         triplePrism.push(vertices2[i])
     }
-    console.log("baru",baseTriplePrism.length)
     let modifiedTriplePrism = new Shape(triplePrism,normalTriplePrism,[0,0,1],gl.TRIANGLE_FAN)
-    // modifiedTriplePrism.rotateX(20)
-    // modifiedTriplePrism.rotateY(-58)
+    modifiedTriplePrism.rotateX(20)
+    modifiedTriplePrism.rotateY(-58)
 
     triplePrism = modifiedTriplePrism.getTransformedVertices()
 
