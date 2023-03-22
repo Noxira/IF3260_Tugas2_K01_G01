@@ -52,6 +52,16 @@ sliderCamera.addEventListener("input", function (e) {
     redraw()
 })
 
+var shadingCheckBox = document.getElementById("isShading")
+shadingCheckBox.addEventListener("change",function(e){
+    if(this.checked){
+        shading = true;
+    }else{
+        shading = false;
+    }
+    redraw()
+})
+
 var sliderZoom = document.getElementById("sliderZoomCamera")
 sliderZoom.addEventListener("input", function (e) {
     currentRadius = 2.5 - sliderZoom.value / 40
