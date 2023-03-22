@@ -109,4 +109,8 @@ class Shape {
     setId(id){
         this.id = id
     }
+
+    reset(){
+        this.transformationMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+    }
 }

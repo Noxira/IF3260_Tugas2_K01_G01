@@ -52,16 +52,6 @@ sliderCamera.addEventListener("input", function (e) {
     redraw()
 })
 
-var shadingCheckBox = document.getElementById("isShading")
-shadingCheckBox.addEventListener("change",function(e){
-    if(this.checked){
-        shading = true;
-    }else{
-        shading = false;
-    }
-    redraw()
-})
-
 var sliderZoom = document.getElementById("sliderZoomCamera")
 sliderZoom.addEventListener("input", function (e) {
     currentRadius = 2.5 - sliderZoom.value / 40
@@ -76,6 +66,31 @@ sliderZoom.addEventListener("input", function (e) {
     let translationMatrix2 = getTranslationMatrix(center[0], center[1], center[2])
     viewMatrix = multiplyMatrix(translationMatrix2, viewMatrix)
 
+    redraw()
+})
+
+var shadingCheckBox = document.getElementById("isShading")
+shadingCheckBox.addEventListener("change",function(e){
+    if(this.checked){
+        shading = true;
+    }else{
+        shading = false;
+    }
+    redraw()
+})
+
+var resetBtn = document.getElementById("resetBtn")
+resetBtn.addEventListener("click",function(e){
+    viewMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+    currentRadius = 2.5;
+    for(let id in shapes){
+        shapes[id].reset()
+    }
+    sliderX.value = 0
+    sliderY.value = 0
+    sliderZ.value = 0
+    sliderCamera.value = 0
+    sliderZoom.value = 0
     redraw()
 })
 
