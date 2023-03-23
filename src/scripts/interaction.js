@@ -76,7 +76,7 @@ shapes[triplePrismShape.id] = triplePrismShape
 simplePyramidShape = new Shape(simplePyramidVertices(), normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 simplePyramidShape.setId(1);
 shapes[simplePyramidShape.id] = simplePyramidShape
-trianglePrismShape = new Shape(trianglePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
+trianglePrismShape = new Shape(trianglePrism, [0, 0, 0], [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 trianglePrismShape.setId(2);
 shapes[trianglePrismShape.id] = trianglePrismShape;
 // let pyramid = new Shape(pyramid,,[0.2, 1, 0.2],gl.TRIANGLE_FAN) 
