@@ -21,7 +21,11 @@ class Shape {
         for (let i = 0; i < vertices.length; i += 12) {
             let verticesToDraw = []
             for (let j = 0; j < 12; j += 3) {
-                verticesToDraw.push(vertices[i + j], vertices[i + j + 1], vertices[i + j + 2], this.color[0], this.color[1], this.color[2], normal[i + j], normal[i + j + 1], normal[i + j + 2]);
+                if (shading) {
+                    verticesToDraw.push(vertices[i + j], vertices[i + j + 1], vertices[i + j + 2], this.color[0], this.color[1], this.color[2], normal[i + j], normal[i + j + 1], normal[i + j + 2]);
+                } else {
+                    verticesToDraw.push(vertices[i + j], vertices[i + j + 1], vertices[i + j + 2], this.color[0], this.color[1], this.color[2], 0, 0, 1);
+                }
             }
             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticesToDraw), gl.STATIC_DRAW)
             gl.drawArrays(this.webGLShape, 0, 4)
@@ -108,5 +112,9 @@ class Shape {
 
     setId(id) {
         this.id = id
+    }
+
+    reset() {
+        this.transformationMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     }
 }

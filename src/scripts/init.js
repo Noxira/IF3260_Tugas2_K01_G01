@@ -12,6 +12,7 @@ var reverseLightDirectionLocation;
 var modelMatrixLocation;
 var viewMatrixLocation;
 var shadderSource;
+var shading = true;
 
 
 //Initialize the WebGL
