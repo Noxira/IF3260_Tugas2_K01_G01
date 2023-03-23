@@ -56,11 +56,11 @@ function getCenterPoint(vertices) {
         } else {
             ret[2] += vertices[i];
         }
-        ret[0] /= vertices.length;
-        ret[1] /= vertices.length;
-        ret[2] /= vertices.length;
+        ret[0] /= (vertices.length / 3);
+        ret[1] /= (vertices.length / 3);
+        ret[2] /= (vertices.length / 3);
     }
-    console.log(ret)
+    console.log(vertices.length);
     return ret
 }
 
