@@ -48,14 +48,19 @@ function getRotationZMatrix(x) {
 
 function getCenterPoint(vertices) {
     let ret = [0, 0, 0]
-    for (let i = 0; i < vertices.length; i += 3) {
-        for (let j = 0; j < 3; j++) {
-            ret[j] += vertices[i + j]
+    for (let i = 0; i < vertices.length; i++) {
+        if (i % 3 == 0) {
+            ret[0] += vertices[i];
+        } else if (i % 3 == 1) {
+            ret[1] += vertices[i];
+        } else {
+            ret[2] += vertices[i];
         }
+        ret[0] /= vertices.length;
+        ret[1] /= vertices.length;
+        ret[2] /= vertices.length;
     }
-    for (let i = 0; i < 3; i++) {
-        ret[i] /= vertices.length / 3
-    }
+    console.log(ret)
     return ret
 }
 

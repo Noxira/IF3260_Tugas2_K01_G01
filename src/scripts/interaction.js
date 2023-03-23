@@ -70,20 +70,20 @@ sliderZoom.addEventListener("input", function (e) {
 })
 
 var shadingCheckBox = document.getElementById("isShading")
-shadingCheckBox.addEventListener("change",function(e){
-    if(this.checked){
+shadingCheckBox.addEventListener("change", function (e) {
+    if (this.checked) {
         shading = true;
-    }else{
+    } else {
         shading = false;
     }
     redraw()
 })
 
 var resetBtn = document.getElementById("resetBtn")
-resetBtn.addEventListener("click",function(e){
-    viewMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]
+resetBtn.addEventListener("click", function (e) {
+    viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     currentRadius = 2.5;
-    for(let id in shapes){
+    for (let id in shapes) {
         shapes[id].reset()
     }
     sliderX.value = 0
@@ -101,7 +101,7 @@ shapes[triplePrismShape.id] = triplePrismShape
 simplePyramidShape = new Shape(simplePyramidVertices(), normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 simplePyramidShape.setId(1);
 shapes[simplePyramidShape.id] = simplePyramidShape
-trianglePrismShape = new Shape(trianglePrism, [0, 0, 0], [0.2, 1, 0.2], gl.TRIANGLE_FAN)
+trianglePrismShape = new Shape(trianglePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 trianglePrismShape.setId(2);
 shapes[trianglePrismShape.id] = trianglePrismShape;
 // let pyramid = new Shape(pyramid,,[0.2, 1, 0.2],gl.TRIANGLE_FAN) 
