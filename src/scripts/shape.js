@@ -106,4 +106,14 @@ class Shape {
     reset() {
         this.transformationMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     }
+
+    resetTransformation(){
+        this.curAngleX = 0
+        this.curAngleY = 0
+        this.curAngleZ = 0
+
+        this.translateX = 0
+        this.translateY = 0
+        this.translateZ = 0
+    }
 }

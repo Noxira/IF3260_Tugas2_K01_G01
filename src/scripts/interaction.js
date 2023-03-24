@@ -111,7 +111,7 @@ resetBtn.addEventListener("click", function (e) {
     viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     currentRadius = 2.5;
     for (let id in shapes) {
-        shapes[id].reset()
+        shapes[id].resetTransformation()
     }
     sliderX.value = 0
     sliderY.value = 0
