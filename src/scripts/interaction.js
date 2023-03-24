@@ -6,6 +6,8 @@ var currentRadius = 2.5;
 
 function redraw() {
     for (let id in shapes) {
+        console.log('draw')
+        console.log(id)
         shapes[id].materialize()
     }
 }
@@ -98,11 +100,13 @@ resetBtn.addEventListener("click", function (e) {
 // Dummy data
 triplePrismShape = new Shape(triplePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 shapes[triplePrismShape.id] = triplePrismShape
-simplePyramidShape = new Shape(simplePyramidVertices(), normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
+simplePyramidShape = new Shape(pyramidVertices, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 simplePyramidShape.setId(1);
+simplePyramidShape.baseTranslateX = 0.7
 shapes[simplePyramidShape.id] = simplePyramidShape
 trianglePrismShape = new Shape(trianglePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 trianglePrismShape.setId(2);
+triplePrismShape.baseTranslateX = -0.7
 shapes[trianglePrismShape.id] = trianglePrismShape;
 // let pyramid = new Shape(pyramid,,[0.2, 1, 0.2],gl.TRIANGLE_FAN) 
 

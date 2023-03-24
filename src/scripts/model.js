@@ -114,20 +114,20 @@ function generateTriplePrism() {
     rotatedTriplePrism2.rotateY(90)
     rotatedTriplePrism2.rotateX(90)
 
-    let vertices1 = rotatedTriplePrism1.getTransformedVertices()
-    let vertices2 = rotatedTriplePrism2.getTransformedVertices()
+    // let vertices1 = rotatedTriplePrism1.getTransformedVertices()
+    // let vertices2 = rotatedTriplePrism2.getTransformedVertices()
 
-    for (let i = 0; i < vertices1.length; i++) {
-        triplePrism.push(vertices1[i])
-    }
-    for (let i = 0; i < vertices2.length; i++) {
-        triplePrism.push(vertices2[i])
-    }
+    // for (let i = 0; i < vertices1.length; i++) {
+    //     triplePrism.push(vertices1[i])
+    // }
+    // for (let i = 0; i < vertices2.length; i++) {
+    //     triplePrism.push(vertices2[i])
+    // }
     let modifiedTriplePrism = new Shape(triplePrism, normalTriplePrism, [0, 0, 1], gl.TRIANGLE_FAN)
-    modifiedTriplePrism.rotateX(20)
-    modifiedTriplePrism.rotateY(-58)
+    // modifiedTriplePrism.rotateX(20)
+    // modifiedTriplePrism.rotateY(-58)
 
-    triplePrism = modifiedTriplePrism.getTransformedVertices()
+    // triplePrism = modifiedTriplePrism.getTransformedVertices()
 
     Shape.ID = 0
 }
@@ -161,21 +161,6 @@ var pyramidVertices = [
     -0.2, -0.2, -0.2, -0.18, -0.2, -0.2, 0.02, 0.2, 0.02, 0, 0.2, 0.02,
     0.18, -0.2, -0.2, 0.2, -0.2, -0.2, 0.02, 0.2, 0.02, 0, 0.2, 0.02,
 ];
-
-function simplePyramidVertices() {
-    let tempPyramid = []
-
-    for (var i = 0; i < 12 * 4 * 4; i++) {
-        if (i % 3 == 0) {
-            tempPyramid.push(pyramidVertices[i] + 0.7);
-        }
-        else {
-            tempPyramid.push(pyramidVertices[i]);
-        }
-    }
-
-    return tempPyramid;
-}
 
 var trianglePrism = [
     // back-right face, shape: rectangle with 4 edges (4 edges represents a hollow with rectangle shape)
@@ -222,5 +207,19 @@ var trianglePrism = [
     // edge 3
     -0.8999999999999999, -0.2, 0.2, -0.8999999999999999, -0.2, -0.2, -0.8999999999999999, -0.18, -0.2, -0.8999999999999999, -0.18, 0.2,
     // edge 4
-    -0.8999999999999999, 0.2, 0.2, -0.8999999999999999, 0.18, 0.2, -0.8999999999999999, 0.18, -0.2, -0.8999999999999999, 0.2, -0.2,
+    -0.8999999999999999, 0.2, 0.2, -0.8999999999999999, 0.18, 0.2, -0.8999999999999999, 0.18, -0.2, -0.8999999999999999, 0.2, -0.2
 ]
+
+let centerTrianglePrism = getCenterPoint(trianglePrism)
+for(let i=0;i<trianglePrism.length;i+=3){
+    trianglePrism[i] -= centerTrianglePrism[0]
+    trianglePrism[i+1] -= centerTrianglePrism[1]
+    trianglePrism[i+2] -= centerTrianglePrism[2]
+}
+
+let centerPyramidVertices = getCenterPoint(pyramidVertices)
+for(let i=0;i<trianglePrism.length;i+=3){
+    pyramidVertices[i] -= pyramidVertices[0]
+    pyramidVertices[i+1] -= pyramidVertices[1]
+    pyramidVertices[i+2] -= pyramidVertices[2]
+}

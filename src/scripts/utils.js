@@ -1,6 +1,20 @@
 let objectPicker = document.getElementById('objectlist');
 objectPicker.selectedIndex = 0;
 
+function min(x,y){
+    if(x<y){
+        return x;
+    }
+    return y;
+}
+
+function max(x,y){
+    if(x>y){
+        return x;
+    }
+    return y;
+}
+
 function toRad(x) {
     return x / (180 / Math.PI)
 }
@@ -48,24 +62,30 @@ function getRotationZMatrix(x) {
 
 function getCenterPoint(vertices) {
     let ret = [0, 0, 0]
+    let mnm = [1,1,1]
+    let mxm = [-1,-1,-1]
+    console.log(vertices)
     for (let i = 0; i < vertices.length; i++) {
         if (i % 3 == 0) {
-            ret[0] += vertices[i];
+            mnm[0] = min(mnm[0],vertices[i])
+            mxm[0] = max(mxm[0],vertices[i])
         } else if (i % 3 == 1) {
-            ret[1] += vertices[i];
+            mnm[1] = min(mnm[1],vertices[i])
+            mxm[1] = max(mxm[1],vertices[i])
         } else {
-            ret[2] += vertices[i];
+            mnm[2] = min(mnm[2],vertices[i])
+            mxm[2] = max(mxm[2],vertices[i])
         }
-        ret[0] /= (vertices.length / 3);
-        ret[1] /= (vertices.length / 3);
-        ret[2] /= (vertices.length / 3);
     }
-    console.log(vertices.length);
+    for(let i=0;i<3;i++){
+        ret[i] = (mnm[i]+mxm[i])/2
+    }
+    console.log(ret);
     return ret
 }
 
 function getTranslationMatrix(x, y, z) {
-    mat = [[1, 0, 0, x], [0, 1, 0, y], [0, 0, 1, z], [0, 0, 0, 1]]
+    let mat = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [x, y, z, 1]]
     return mat
 }
 

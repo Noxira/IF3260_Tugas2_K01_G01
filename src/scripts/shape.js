@@ -11,11 +11,23 @@ class Shape {
         this.curAngleX = 0
         this.curAngleY = 0
         this.curAngleZ = 0
+
+        this.baseTranslateX = 0
+        this.baseTranslateY = 0
+        this.baseTranslateZ = 0
+
+        this.translateX = 0
+        this.translateY = 0
+        this.translateZ = 0
     }
 
     materialize() {
+        this.reset()
+        this.getTransformedMatrix()
+
         let vertices = this.vertices
         let normal = this.getTransformedNormal()
+
         gl.uniformMatrix4fv(modelMatrixLocation, false, flatten(this.transformationMatrix));
         gl.uniformMatrix4fv(viewMatrixLocation, false, flatten(viewMatrix))
         for (let i = 0; i < vertices.length; i += 12) {
@@ -33,68 +45,29 @@ class Shape {
     }
 
     rotateX(x) {
-        // Translate to -center
-        let center = getCenterPoint(this.getTransformedVertices())
-        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0], -center[1], -center[2]), this.transformationMatrix)
-
-        // Rotate
-        let rotationXMatrix = getRotationXMatrix(x - this.curAngleX)
-        this.transformationMatrix = multiplyMatrix(rotationXMatrix, this.transformationMatrix)
         this.curAngleX = x
-
-        // Translate 
-        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(center[0], center[1], center[2]), this.transformationMatrix)
-
     }
 
     rotateY(x) {
-        // Translate to -center
-        let center = getCenterPoint(this.getTransformedVertices())
-        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0], -center[1], -center[2]), this.transformationMatrix)
-
-        // Rotate
-        let rotationYMatrix = getRotationYMatrix(x - this.curAngleY)
-        this.transformationMatrix = multiplyMatrix(rotationYMatrix, this.transformationMatrix)
         this.curAngleY = x
-
-        // Translate 
-        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(center[0], center[1], center[2]), this.transformationMatrix)
     }
 
     rotateZ(x) {
-        // Translate to -center
-        let center = getCenterPoint(this.getTransformedVertices())
-        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(-center[0], -center[1], -center[2]), this.transformationMatrix)
-
-        // Rotate
-        let rotationZMatrix = getRotationZMatrix(x - this.curAngleZ)
-        this.transformationMatrix = multiplyMatrix(rotationZMatrix, this.transformationMatrix)
         this.curAngleZ = x
-
-        // Translate 
-        this.transformationMatrix = multiplyMatrix(getTranslationMatrix(center[0], center[1], center[2]), this.transformationMatrix)
-    }
-
-    translateX(x) {
-
     }
 
     translate(x, y, z) {
-        translationMatrix = getTranslationMatrix(x, y, z)
-        this.transformationMatrix = multiplyMatrix(translationMatrix, this.transformationMatrix)
+        this.translateX = x
+        this.translateY = y
+        this.translateZ = z
     }
 
-    getTransformedVertices() {
-        let vertices = []
-        for (let i = 0; i < this.vertices.length; i += 12) {
-            for (let j = 0; j < 12; j += 3) {
-                let newVertex = [[this.vertices[i + j]], [this.vertices[i + j + 1]], [this.vertices[i + j + 2]], [1]]
-                let retMat = multiplyMatrix(this.transformationMatrix, newVertex)
-
-                vertices.push(retMat[0][0], retMat[1][0], retMat[2][0])
-            }
-        }
-        return vertices
+    getTransformedMatrix() {
+        // TODO : SCALE
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationZMatrix(this.curAngleZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationYMatrix(this.curAngleY))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationXMatrix(this.curAngleX))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getTranslationMatrix(this.translateX + this.baseTranslateX,this.translateY + this.baseTranslateY,this.translateZ + this.baseTranslateZ))
     }
     getTransformedNormal() {
         let normal = []
