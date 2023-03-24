@@ -109,10 +109,13 @@ shadingCheckBox.addEventListener("change", function (e) {
 var resetBtn = document.getElementById("resetBtn")
 resetBtn.addEventListener("click", function (e) {
     viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    projectionPicker.selectedIndex = 0;
+    objectPicker.selectedIndex = 0;
     currentRadius = 2.5;
     for (let id in shapes) {
         shapes[id].resetTransformation()
     }
+    changeToOrtho()
     sliderX.value = 0
     sliderY.value = 0
     sliderZ.value = 0
@@ -191,3 +194,30 @@ shapes[trianglePrismShape.id] = trianglePrismShape;
 // let pyramid = new Shape(pyramid,,[0.2, 1, 0.2],gl.TRIANGLE_FAN) 
 
 redraw()
+
+function testerFunc(){
+    var orthMatrix = [ 1,0,0,0, 0,1,0,0, 0,0,0,0, 0,0,0,1 ];
+    var stMatrix = getSTMat(-1,1,-1,1,1,100);
+    var newProj = multiplyMatrix(orthMatrix, stMatrix);
+
+    shapes[1].setProjectionMatrix(newProj);
+    redraw();
+}
+
+function testerFunc2(){
+    var perspectiveMatrix = getProjection(30, canvas.width/canvas.height, 1, 100);
+
+    shapes[1].setProjectionMatrix(perspectiveMatrix);
+    redraw();
+}
+
+function testerFunc3(){
+    var shtMat = [ [1,0,0,0], [0,1,0,0], [0.3,0.3,0,0], [0,0,0,1] ];
+    var newProj = multiplyMatrix(translation(0.6,0.6,0), shtMat);
+
+    for(var i = 0; i < 3; i++){
+        console.log(i);
+        shapes[i].setProjectionMatrix(newProj);
+    }
+    redraw();
+}

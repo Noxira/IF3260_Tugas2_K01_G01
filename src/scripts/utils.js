@@ -1,5 +1,7 @@
 let objectPicker = document.getElementById('objectlist');
 objectPicker.selectedIndex = 0;
+let projectionPicker = document.getElementById('projection_selector');
+projectionPicker.selectedIndex = 0;
 
 function min(x, y) {
     if (x < y) {
@@ -248,4 +250,13 @@ function transpose(mat) {
         }
     }
     return ret
+}
+
+function translation(tx, ty, tz){
+    return [
+        [1,  0,  0,  0],
+        [0,  1,  0,  0],
+        [0,  0,  1,  0],
+        [tx, ty, tz, 1],
+    ];
 }
