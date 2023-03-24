@@ -150,15 +150,23 @@ saveBtn.addEventListener("click", function (event) {
 var loadBtn = document.getElementById("loadBtn")
 loadBtn.addEventListener("click", function (event) {
     let file = document.getElementById("inputFile").files[0];
-    console.log(file)
+    // console.log(file)
     let reader = new FileReader();
     reader.onload = function (event) {
         let shapesInput = JSON.parse(event.target.result);
         for (let i = 0; i < shapesInput.length; i++) {
+            // console.log(shapesInput[i])
             let hollowShape = new Shape(shapesInput[i].vertices, shapesInput[i].normal, shapesInput[i].color, shapesInput[i].webGLShape)
+            shapes[hollowShape.id] = hollowShape
             hollowShape.setId(shapesInput[i].id)
+            console.log(shapes);
+            // if (i % 3 == 0) {
+            //     hollowShape.baseTranslateX = -0.7
+            // } else if (i % 3 == 1) {
+            //     hollowShape.baseTranslateX = 0.7
+            // }
+            redraw();
         }
-        redraw();
     };
     try {
         reader.readAsText(file);
@@ -168,7 +176,6 @@ loadBtn.addEventListener("click", function (event) {
         alert("No file selected");
     }
 });
-
 
 // Dummy data
 triplePrismShape = new Shape(triplePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)

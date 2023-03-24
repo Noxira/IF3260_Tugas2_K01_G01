@@ -63,10 +63,10 @@ class Shape {
 
     getTransformedMatrix() {
         // TODO : SCALE
-        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationZMatrix(this.curAngleZ))
-        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationYMatrix(this.curAngleY))
-        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationXMatrix(this.curAngleX))
-        this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getTranslationMatrix(this.translateX + this.baseTranslateX,this.translateY + this.baseTranslateY,this.translateZ + this.baseTranslateZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationZMatrix(this.curAngleZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationYMatrix(this.curAngleY))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationXMatrix(this.curAngleX))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getTranslationMatrix(this.translateX + this.baseTranslateX, this.translateY + this.baseTranslateY, this.translateZ + this.baseTranslateZ))
     }
     getTransformedVertices() {
         let vertices = []
@@ -85,8 +85,8 @@ class Shape {
     getTransformedNormal() {
         let normal = []
         let invTransposeMat = transpose(inverse(this.transformationMatrix))
-        console.log(this.transformationMatrix)
-        console.log(invTransposeMat)
+        // console.log(this.transformationMatrix)
+        // console.log(invTransposeMat)
         for (let i = 0; i < this.normal.length; i += 12) {
             for (let j = 0; j < 12; j += 3) {
                 let newNormal = [[this.normal[i + j]], [this.normal[i + j + 1]], [this.normal[i + j + 2]], [0]]
@@ -95,7 +95,7 @@ class Shape {
                 normal.push(retMat[0][0], retMat[1][0], retMat[2][0])
             }
         }
-        console.log(normal)
+        // console.log(normal)
         return normal
     }
 
@@ -107,7 +107,7 @@ class Shape {
         this.transformationMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     }
 
-    resetTransformation(){
+    resetTransformation() {
         this.curAngleX = 0
         this.curAngleY = 0
         this.curAngleZ = 0
