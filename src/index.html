@@ -16,7 +16,7 @@
     </div>
     <div class="gui">
         <div class="toolbar left-div">
-            <div>
+            <div style="margin-top: 10px;">
                 <label>Object</label>
                 <select id="objectlist" name="objectlist" onchange="updateObjectChosen()">
                     <option value="0" selected>TriplePrism</option>
@@ -74,6 +74,15 @@
                 <label>Use shading</label>
             </div>
             </br>
+            <b>Projection</b>
+            <div>
+                <select id="projection_selector" name="projection_selector">
+                    <option value="0" onclick="changeToOrtho()" selected>Orthogonal</option>
+                    <option value="1" onclick="changeToOblique()">Oblique</option>
+                    <option value="2" onclick="changeToPerspective()">Perspective</option>
+                </select>
+            </div>
+            </br>
             <b>Others</b>
             <div>
                 <button id="resetBtn">Reset</button>
@@ -101,5 +110,6 @@
 <script src="./scripts/shape.js"></script>
 <script src="./scripts/model.js"></script>
 <script src="./scripts/interaction.js"></script>
+<script src="./scripts/projection.js"></script>
 
 </html>

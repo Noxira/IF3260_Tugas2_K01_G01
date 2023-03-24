@@ -11,6 +11,7 @@ var normalAttribLocation;
 var reverseLightDirectionLocation;
 var modelMatrixLocation;
 var viewMatrixLocation;
+var projectionMatrixLocation;
 var shadderSource;
 var shading = true;
 
@@ -39,13 +40,14 @@ function init() {
         in vec3 a_normal;
         uniform mat4 modelMatrix;
         uniform mat4 viewMatrix;
+        uniform mat4 projectionMatrix;
         out vec4 fragColor;
         out vec3 vnormal;
     
         void main() {
             fragColor = vec4(vertColor,1);
             gl_PointSize = 20.0;
-            gl_Position = viewMatrix * modelMatrix * vec4(vertPosition, 1);
+            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertPosition, 1);
 
             vnormal = a_normal;
         }`,
@@ -114,9 +116,10 @@ function init() {
         6 * Float32Array.BYTES_PER_ELEMENT      //Normals start from the fourth element
     );
 
+    projectionMatrixLocation = gl.getUniformLocation(program,"projectionMatrix") // <-- WATCH THIS
     modelMatrixLocation = gl.getUniformLocation(program,"modelMatrix")
     viewMatrixLocation = gl.getUniformLocation(program,"viewMatrix")
-    
+
     //Enable the attribute
     gl.enableVertexAttribArray(positionAttribLocation);
     gl.enableVertexAttribArray(colorAttribLocation);
@@ -134,3 +137,4 @@ function init() {
 
 //Initialize the WebGL
 init();
+console.log(projectionMatrixLocation);

@@ -11,6 +11,7 @@ class Shape {
         this.curAngleX = 0
         this.curAngleY = 0
         this.curAngleZ = 0
+        this.projection_matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]]
 
         this.baseTranslateX = 0
         this.baseTranslateY = 0
@@ -26,7 +27,7 @@ class Shape {
         this.getTransformedMatrix()
         let vertices = this.vertices
         let normal = this.getTransformedNormal()
-
+        gl.uniformMatrix4fv(projectionMatrixLocation, false, flatten(this.projection_matrix));
         gl.uniformMatrix4fv(modelMatrixLocation, false, flatten(this.transformationMatrix));
         gl.uniformMatrix4fv(viewMatrixLocation, false, flatten(viewMatrix))
         for (let i = 0; i < vertices.length; i += 12) {
@@ -106,6 +107,10 @@ class Shape {
         this.id = id
     }
 
+    setProjectionMatrix(mat){
+        this.projection_matrix = mat;
+    }
+
     reset() {
         this.transformationMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     }
@@ -114,9 +119,11 @@ class Shape {
         this.curAngleX = 0
         this.curAngleY = 0
         this.curAngleZ = 0
-
+        
         this.translateX = 0
         this.translateY = 0
         this.translateZ = 0
+        
+        this.projection_matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]]
     }
 }
