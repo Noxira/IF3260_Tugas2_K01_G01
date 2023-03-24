@@ -24,7 +24,6 @@ class Shape {
     materialize() {
         this.reset()
         this.getTransformedMatrix()
-
         let vertices = this.vertices
         let normal = this.getTransformedNormal()
 
@@ -69,9 +68,25 @@ class Shape {
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getRotationXMatrix(this.curAngleX))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix,getTranslationMatrix(this.translateX + this.baseTranslateX,this.translateY + this.baseTranslateY,this.translateZ + this.baseTranslateZ))
     }
+    getTransformedVertices() {
+        let vertices = []
+        this.reset()
+        this.getTransformedMatrix()
+        for (let i = 0; i < this.vertices.length; i += 12) {
+            for (let j = 0; j < 12; j += 3) {
+                let newVertex = [[this.vertices[i + j]], [this.vertices[i + j + 1]], [this.vertices[i + j + 2]], [1]]
+                let retMat = multiplyMatrix(this.transformationMatrix, newVertex)
+
+                vertices.push(retMat[0][0], retMat[1][0], retMat[2][0])
+            }
+        }
+        return vertices
+    }
     getTransformedNormal() {
         let normal = []
         let invTransposeMat = transpose(inverse(this.transformationMatrix))
+        console.log(this.transformationMatrix)
+        console.log(invTransposeMat)
         for (let i = 0; i < this.normal.length; i += 12) {
             for (let j = 0; j < 12; j += 3) {
                 let newNormal = [[this.normal[i + j]], [this.normal[i + j + 1]], [this.normal[i + j + 2]], [0]]
@@ -80,6 +95,7 @@ class Shape {
                 normal.push(retMat[0][0], retMat[1][0], retMat[2][0])
             }
         }
+        console.log(normal)
         return normal
     }
 
