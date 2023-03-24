@@ -12,6 +12,31 @@ function redraw() {
     }
 }
 
+var sliderTranslationX = document.getElementById("sliderTranslationX")
+var sliderTranslationY = document.getElementById("sliderTranslationY")
+var sliderTranslationZ = document.getElementById("sliderTranslationZ")
+
+sliderTranslationX.addEventListener("input",function(e){
+    if (choosenShapeID != null) {
+        shapes[choosenShapeID].translate(sliderTranslationX.value/100,sliderTranslationY.value/100,sliderTranslationZ.value/100)
+        redraw()
+    }
+})
+
+sliderTranslationY.addEventListener("input",function(e){
+    if (choosenShapeID != null) {
+        shapes[choosenShapeID].translate(sliderTranslationX.value/100,sliderTranslationY.value/100,sliderTranslationZ.value/100)
+        redraw()
+    }
+})
+
+sliderTranslationZ.addEventListener("input",function(e){
+    if (choosenShapeID != null) {
+        shapes[choosenShapeID].translate(sliderTranslationX.value/100,sliderTranslationY.value/100,sliderTranslationZ.value/100)
+        redraw()
+    }
+})
+
 var sliderX = document.getElementById("sliderRotationX")
 sliderX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
