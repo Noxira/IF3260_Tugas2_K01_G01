@@ -25,6 +25,10 @@ var baseTriplePrism = [
     -w + d, l - d, d, w - d, l - d, d, w - d, l - d, -d, -w + d, l - d, -d,
     -w + d, -l + d, -d, -w + d, -l + d, d, -w + d, l - d, d, -w + d, l - d, -d,
     w - d, -l + d, -d, w - d, -l + d, d, w - d, l - d, d, w - d, l - d, -d
+
+    // Horizontal 1 plane
+    // 1. front side
+
 ]
 
 var baseNormalTriplePrism = [
@@ -52,18 +56,18 @@ var baseNormalTriplePrism = [
 
     // Horizontal 1 plane
     // 1. front side
-    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
-    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
-    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
-    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
     // 2. back side
-    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
-    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
-    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
-    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
     // 3. edge out side
-    -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
+    -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
     0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1,
     0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
     // 3. edge in side
@@ -107,28 +111,22 @@ for (let i = 0; i < baseNormalTriplePrism.length; i++) {
 
 function generateTriplePrism() {
     let rotatedTriplePrism1 = new Shape(baseTriplePrism, baseNormalTriplePrism, [0, 0, 1], gl.TRIANGLE_FAN)
-    rotatedTriplePrism1.rotateX(90)
     rotatedTriplePrism1.rotateY(90)
+    rotatedTriplePrism1.rotateZ(90)
 
     let rotatedTriplePrism2 = new Shape(baseTriplePrism, baseNormalTriplePrism, [0, 0, 1], gl.TRIANGLE_FAN)
-    rotatedTriplePrism2.rotateY(90)
     rotatedTriplePrism2.rotateX(90)
+    rotatedTriplePrism2.rotateZ(90)
 
-    // let vertices1 = rotatedTriplePrism1.getTransformedVertices()
-    // let vertices2 = rotatedTriplePrism2.getTransformedVertices()
+    let vertices1 = rotatedTriplePrism1.getTransformedVertices()
+    let vertices2 = rotatedTriplePrism2.getTransformedVertices()
 
-    // for (let i = 0; i < vertices1.length; i++) {
-    //     triplePrism.push(vertices1[i])
-    // }
-    // for (let i = 0; i < vertices2.length; i++) {
-    //     triplePrism.push(vertices2[i])
-    // }
-    let modifiedTriplePrism = new Shape(triplePrism, normalTriplePrism, [0, 0, 1], gl.TRIANGLE_FAN)
-    // modifiedTriplePrism.rotateX(20)
-    // modifiedTriplePrism.rotateY(-58)
-
-    // triplePrism = modifiedTriplePrism.getTransformedVertices()
-
+    for (let i = 0; i < vertices1.length; i++) {
+        triplePrism.push(vertices1[i])
+    }
+    for (let i = 0; i < vertices2.length; i++) {
+        triplePrism.push(vertices2[i])
+    }
     Shape.ID = 0
 }
 
