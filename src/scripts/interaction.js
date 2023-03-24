@@ -44,21 +44,21 @@ var sliderScalingZ = document.getElementById("sliderScalingZ")
 
 sliderScalingX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
-        shapes[choosenShapeID].scale(sliderScalingX.value / 100, sliderScalingY.value / 100, sliderScalingZ.value / 100)
+        shapes[choosenShapeID].scale(sliderScalingX.value / 20, sliderScalingY.value / 20, sliderScalingZ.value / 20)
         redraw()
     }
 })
 
 sliderScalingY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
-        shapes[choosenShapeID].scale(sliderScalingX.value / 100, sliderScalingY.value / 100, sliderScalingZ.value / 100)
+        shapes[choosenShapeID].scale(sliderScalingX.value / 20, sliderScalingY.value / 20, sliderScalingZ.value / 20)
         redraw()
     }
 })
 
 sliderScalingZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
-        shapes[choosenShapeID].scale(sliderScalingX.value / 100, sliderScalingY.value / 100, sliderScalingZ.value / 100)
+        shapes[choosenShapeID].scale(sliderScalingX.value / 20, sliderScalingY.value / 20, sliderScalingZ.value / 20)
         redraw()
     }
 })
