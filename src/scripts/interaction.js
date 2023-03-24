@@ -6,8 +6,8 @@ var currentRadius = 2.5;
 
 function redraw() {
     for (let id in shapes) {
-        console.log('draw')
-        console.log(id)
+        // console.log('draw')
+        // console.log(id)
         shapes[id].materialize()
     }
 }
@@ -16,23 +16,23 @@ var sliderTranslationX = document.getElementById("sliderTranslationX")
 var sliderTranslationY = document.getElementById("sliderTranslationY")
 var sliderTranslationZ = document.getElementById("sliderTranslationZ")
 
-sliderTranslationX.addEventListener("input",function(e){
+sliderTranslationX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
-        shapes[choosenShapeID].translate(sliderTranslationX.value/100,sliderTranslationY.value/100,sliderTranslationZ.value/100)
+        shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
         redraw()
     }
 })
 
-sliderTranslationY.addEventListener("input",function(e){
+sliderTranslationY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
-        shapes[choosenShapeID].translate(sliderTranslationX.value/100,sliderTranslationY.value/100,sliderTranslationZ.value/100)
+        shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
         redraw()
     }
 })
 
-sliderTranslationZ.addEventListener("input",function(e){
+sliderTranslationZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
-        shapes[choosenShapeID].translate(sliderTranslationX.value/100,sliderTranslationY.value/100,sliderTranslationZ.value/100)
+        shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
         redraw()
     }
 })
@@ -120,6 +120,54 @@ resetBtn.addEventListener("click", function (e) {
     sliderZoom.value = 0
     redraw()
 })
+
+// save
+var saveBtn = document.getElementById("saveBtn")
+saveBtn.addEventListener("click", function (event) {
+    let savedShapes = [];
+    for (let i in shapes) {
+        let shape = shapes[i];
+        // console.log(shape);
+        let savedShape = {
+            "id": shape.id,
+            "vertices": shape.vertices,
+            "normal": shape.normal,
+            "color": shape.color,
+            "webGLShape": shape.webGLShape
+        };
+        savedShapes.push(savedShape);
+    }
+    let json = JSON.stringify(savedShapes);
+    let blob = new Blob([json], { type: "application/json" });
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = "drawing.json";
+    a.click();
+    window.URL.revokeObjectURL(url);
+});
+
+var loadBtn = document.getElementById("loadBtn")
+loadBtn.addEventListener("click", function (event) {
+    let file = document.getElementById("inputFile").files[0];
+    console.log(file)
+    let reader = new FileReader();
+    reader.onload = function (event) {
+        let shapesInput = JSON.parse(event.target.result);
+        for (let i = 0; i < shapesInput.length; i++) {
+            let hollowShape = new Shape(shapesInput[i].vertices, shapesInput[i].normal, shapesInput[i].color, shapesInput[i].webGLShape)
+            hollowShape.setId(shapesInput[i].id)
+        }
+        redraw();
+    };
+    try {
+        reader.readAsText(file);
+        shapes = {};
+    }
+    catch (err) {
+        alert("No file selected");
+    }
+});
 
 
 // Dummy data

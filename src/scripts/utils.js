@@ -1,15 +1,15 @@
 let objectPicker = document.getElementById('objectlist');
 objectPicker.selectedIndex = 0;
 
-function min(x,y){
-    if(x<y){
+function min(x, y) {
+    if (x < y) {
         return x;
     }
     return y;
 }
 
-function max(x,y){
-    if(x>y){
+function max(x, y) {
+    if (x > y) {
         return x;
     }
     return y;
@@ -62,25 +62,25 @@ function getRotationZMatrix(x) {
 
 function getCenterPoint(vertices) {
     let ret = [0, 0, 0]
-    let mnm = [1,1,1]
-    let mxm = [-1,-1,-1]
-    console.log(vertices)
+    let mnm = [1, 1, 1]
+    let mxm = [-1, -1, -1]
+    // console.log(vertices)
     for (let i = 0; i < vertices.length; i++) {
         if (i % 3 == 0) {
-            mnm[0] = min(mnm[0],vertices[i])
-            mxm[0] = max(mxm[0],vertices[i])
+            mnm[0] = min(mnm[0], vertices[i])
+            mxm[0] = max(mxm[0], vertices[i])
         } else if (i % 3 == 1) {
-            mnm[1] = min(mnm[1],vertices[i])
-            mxm[1] = max(mxm[1],vertices[i])
+            mnm[1] = min(mnm[1], vertices[i])
+            mxm[1] = max(mxm[1], vertices[i])
         } else {
-            mnm[2] = min(mnm[2],vertices[i])
-            mxm[2] = max(mxm[2],vertices[i])
+            mnm[2] = min(mnm[2], vertices[i])
+            mxm[2] = max(mxm[2], vertices[i])
         }
     }
-    for(let i=0;i<3;i++){
-        ret[i] = (mnm[i]+mxm[i])/2
+    for (let i = 0; i < 3; i++) {
+        ret[i] = (mnm[i] + mxm[i]) / 2
     }
-    console.log(ret);
+    // console.log(ret);
     return ret
 }
 
