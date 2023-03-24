@@ -99,6 +99,9 @@ class Shape {
         return normal
     }
 
+    applyAllTransformation() {
+
+    }
     setId(id) {
         this.id = id
     }

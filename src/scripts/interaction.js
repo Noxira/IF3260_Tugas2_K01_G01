@@ -128,10 +128,12 @@ saveBtn.addEventListener("click", function (event) {
     for (let i in shapes) {
         let shape = shapes[i];
         // console.log(shape);
+        // console.log(shape.vertices)
+        // console.log(shape.getTransformedVertices())
         let savedShape = {
             "id": shape.id,
-            "vertices": shape.vertices,
-            "normal": shape.normal,
+            "vertices": shape.getTransformedVertices(),
+            "normal": shape.getTransformedNormal(),
             "color": shape.color,
             "webGLShape": shape.webGLShape
         };
@@ -159,7 +161,7 @@ loadBtn.addEventListener("click", function (event) {
             let hollowShape = new Shape(shapesInput[i].vertices, shapesInput[i].normal, shapesInput[i].color, shapesInput[i].webGLShape)
             shapes[hollowShape.id] = hollowShape
             hollowShape.setId(shapesInput[i].id)
-            console.log(shapes);
+            // console.log(shapes);
             // if (i % 3 == 0) {
             //     hollowShape.baseTranslateX = -0.7
             // } else if (i % 3 == 1) {
