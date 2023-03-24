@@ -91,6 +91,11 @@ function getTranslationMatrix(x, y, z) {
     return mat
 }
 
+function getScalingMatrix(x, y, z) {
+    let mat = [[x, 0, 0, 0], [0, y, 0, 0], [0, 0, z, 0], [0, 0, 0, 1]]
+    return mat
+}
+
 function updateObjectChosen() {
     choosenShapeID = objectPicker.value
 }
@@ -252,11 +257,11 @@ function transpose(mat) {
     return ret
 }
 
-function translation(tx, ty, tz){
+function translation(tx, ty, tz) {
     return [
-        [1,  0,  0,  0],
-        [0,  1,  0,  0],
-        [0,  0,  1,  0],
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
         [tx, ty, tz, 1],
     ];
 }

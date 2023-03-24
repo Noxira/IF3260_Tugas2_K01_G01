@@ -20,6 +20,10 @@ class Shape {
         this.translateX = 0
         this.translateY = 0
         this.translateZ = 0
+
+        this.scaleX = 1
+        this.scaleY = 1
+        this.scaleZ = 1
     }
 
     materialize() {
@@ -62,12 +66,19 @@ class Shape {
         this.translateZ = z
     }
 
+    scale(x, y, z) {
+        this.scaleX = x
+        this.scaleY = y
+        this.scaleZ = z
+    }
+
     getTransformedMatrix() {
         // TODO : SCALE
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationZMatrix(this.curAngleZ))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationYMatrix(this.curAngleY))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationXMatrix(this.curAngleX))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getTranslationMatrix(this.translateX + this.baseTranslateX, this.translateY + this.baseTranslateY, this.translateZ + this.baseTranslateZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getScalingMatrix(this.scaleX, this.scaleY, this.scaleZ))
     }
     getTransformedVertices() {
         let vertices = []
@@ -107,7 +118,7 @@ class Shape {
         this.id = id
     }
 
-    setProjectionMatrix(mat){
+    setProjectionMatrix(mat) {
         this.projection_matrix = mat;
     }
 
@@ -119,11 +130,15 @@ class Shape {
         this.curAngleX = 0
         this.curAngleY = 0
         this.curAngleZ = 0
-        
+
         this.translateX = 0
         this.translateY = 0
         this.translateZ = 0
-        
+
+        this.scaleX = 1
+        this.scaleY = 1
+        this.scaleZ = 1
+
         this.projection_matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]]
     }
 }
