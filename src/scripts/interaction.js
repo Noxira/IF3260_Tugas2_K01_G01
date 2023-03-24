@@ -19,6 +19,7 @@ var sliderTranslationZ = document.getElementById("sliderTranslationZ")
 sliderTranslationX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
+        document.getElementById('outputTranslationX').innerHTML = sliderTranslationX.value / 100
         redraw()
     }
 })
@@ -26,6 +27,7 @@ sliderTranslationX.addEventListener("input", function (e) {
 sliderTranslationY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
+        document.getElementById('outputTranslationY').innerHTML = sliderTranslationY.value / 100
         redraw()
     }
 })
@@ -33,6 +35,7 @@ sliderTranslationY.addEventListener("input", function (e) {
 sliderTranslationZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
+        document.getElementById('outputTranslationZ').innerHTML = sliderTranslationZ.value / 100
         redraw()
     }
 })
@@ -45,6 +48,7 @@ var sliderScalingZ = document.getElementById("sliderScalingZ")
 sliderScalingX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].scale(sliderScalingX.value / 500, sliderScalingY.value / 500, sliderScalingZ.value / 500)
+        document.getElementById('outputSx').innerHTML = (sliderScalingX.value / 500).toString() + "x"
         redraw()
     }
 })
@@ -52,6 +56,7 @@ sliderScalingX.addEventListener("input", function (e) {
 sliderScalingY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].scale(sliderScalingX.value / 500, sliderScalingY.value / 500, sliderScalingZ.value / 500)
+        document.getElementById('outputSy').innerHTML = (sliderScalingY.value / 500).toString() + "x"
         redraw()
     }
 })
@@ -59,6 +64,7 @@ sliderScalingY.addEventListener("input", function (e) {
 sliderScalingZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].scale(sliderScalingX.value / 500, sliderScalingY.value / 500, sliderScalingZ.value / 500)
+        document.getElementById('outputSz').innerHTML = (sliderScalingZ.value / 500).toString() + "x"
         redraw()
     }
 })
@@ -67,6 +73,7 @@ var sliderX = document.getElementById("sliderRotationX")
 sliderX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].rotateX(sliderX.value)
+        document.getElementById('outputRotationX').innerHTML = sliderX.value.toString() + "°"
         redraw()
     }
 })
@@ -75,6 +82,7 @@ var sliderY = document.getElementById("sliderRotationY")
 sliderY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].rotateY(sliderY.value)
+        document.getElementById('outputRotationY').innerHTML = sliderY.value.toString() + "°"
         redraw()
     }
 })
@@ -83,6 +91,7 @@ var sliderZ = document.getElementById("sliderRotationZ")
 sliderZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].rotateZ(sliderZ.value)
+        document.getElementById('outputRotationZ').innerHTML = sliderZ.value.toString() + "°"
         redraw()
     }
 })
@@ -102,6 +111,7 @@ sliderCamera.addEventListener("input", function (e) {
 
     lastViewAngle = sliderCamera.value
 
+    document.getElementById('outputRotationCamera').innerHTML = sliderCamera.value.toString() + "°"
     redraw()
 })
 
@@ -119,6 +129,7 @@ sliderZoom.addEventListener("input", function (e) {
     let translationMatrix2 = getTranslationMatrix(center[0], center[1], center[2])
     viewMatrix = multiplyMatrix(translationMatrix2, viewMatrix)
 
+    // document.getElementById('outputZoomCamera').innerHTML = sliderZoom.value.toString() + "°"
     redraw()
 })
 
