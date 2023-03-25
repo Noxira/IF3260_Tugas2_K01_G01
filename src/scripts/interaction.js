@@ -168,6 +168,16 @@ resetBtn.addEventListener("click", function (e) {
     resetObjectLabels()
     sliderCamera.value = 0
     sliderZoom.value = 0
+    document.getElementById('outputRotationX').innerHTML = ""
+    document.getElementById('outputRotationY').innerHTML = ""
+    document.getElementById('outputRotationZ').innerHTML = ""
+    document.getElementById('outputTranslationX').innerHTML = ""
+    document.getElementById('outputTranslationY').innerHTML = ""
+    document.getElementById('outputTranslationZ').innerHTML = ""
+    document.getElementById('outputSx').innerHTML = ""
+    document.getElementById('outputSy').innerHTML = ""
+    document.getElementById('outputSz').innerHTML = ""
+    document.getElementById('outputRotationCamera').innerHTML = ""
     redraw()
 })
 
@@ -209,10 +219,10 @@ loadBtn.addEventListener("click", function (event) {
         for (let i = 0; i < shapesInput.length; i++) {
             // console.log(shapesInput[i])
             let center = getCenterPoint(shapesInput[i].vertices)
-            for(let j=0;j<shapesInput[i].vertices.length;j+=3){
+            for (let j = 0; j < shapesInput[i].vertices.length; j += 3) {
                 shapesInput[i].vertices[j] -= center[0]
-                shapesInput[i].vertices[j+1] -= center[1]
-                shapesInput[i].vertices[j+2] -= center[2]
+                shapesInput[i].vertices[j + 1] -= center[1]
+                shapesInput[i].vertices[j + 2] -= center[2]
             }
             let hollowShape = new Shape(shapesInput[i].vertices, shapesInput[i].normal, shapesInput[i].color, shapesInput[i].webGLShape)
             shapes[shapesInput[i].id] = hollowShape
