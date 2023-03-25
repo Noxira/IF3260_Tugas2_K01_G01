@@ -1,8 +1,8 @@
-# Tugas 2 IF3260 Grafika Komputer 3D Web Based CAD (Computer-Aided Design)
+# Tugas 2 IF3260 Grafika Komputer 3D WebGL Hollow Object
 Tugas ini disusun untuk memenuhi tugas mata kuliah IF3260 Grafika Komputer tahun ajaran 2022/2023
 
 # Deskripsi
-Aplikasi yang dibuat merupakan aplikasi CAD (computer-aided design) 3D berbasis web murni tanpa library atau framework apa pun.. Setiap model yang dibuat dapat disimpan dalam format JSON dan dapat dimuat kembali ke dalam aplikasi.
+Aplikasi yang dibuat merupakan aplikasi 3D WebGL Hollow Object berbasis web murni tanpa library atau framework apa pun.. Setiap model yang dibuat dapat disimpan dalam format JSON dan dapat dimuat kembali ke dalam aplikasi.
 
 # Fitur
 - Pemodelan 3 buah objek berongga yang berbeda
