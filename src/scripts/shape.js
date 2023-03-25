@@ -28,6 +28,8 @@ class Shape {
 
     materialize() {
         this.reset()
+        console.log(this.getTransformedVertices())
+        this.reset()
         this.getTransformedMatrix()
         let vertices = this.vertices
         let normal = this.getTransformedNormal()
@@ -81,11 +83,12 @@ class Shape {
     }
 
     getTransformedMatrixNonWebgl(){
-        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getScalingMatrix(this.scaleX, this.scaleY, this.scaleZ))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationZMatrix(this.curAngleZ))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationYMatrix(this.curAngleY))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationXMatrix(this.curAngleX))
-        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, transpose(getTranslationMatrix(this.translateX + this.baseTranslateX, this.translateY + this.baseTranslateY, this.translateZ + this.baseTranslateZ)))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getScalingMatrix(this.scaleX, this.scaleY, this.scaleZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getTranslationMatrix(this.translateX + this.baseTranslateX, this.translateY + this.baseTranslateY, this.translateZ + this.baseTranslateZ))
+        this.transformationMatrix = transpose(this.transformationMatrix)
     }
 
     getTransformedVertices() {

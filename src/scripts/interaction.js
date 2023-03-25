@@ -156,7 +156,7 @@ resetBtn.addEventListener("click", function (e) {
     viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
     projectionPicker.selectedIndex = 0;
     objectPicker.selectedIndex = 0;
-    currentRadius = 2.5;
+    currentRadius = 0.5;
     for (let id in shapes) {
         shapes[id].resetTransformation()
     }
