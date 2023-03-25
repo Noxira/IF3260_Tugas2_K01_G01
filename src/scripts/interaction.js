@@ -261,6 +261,8 @@ trianglePrismShape = new Shape(trianglePrism, normalTrianglePrism, [0.2, 1, 0.2]
 trianglePrismShape.setId(2);
 triplePrismShape.baseTranslateX = -0.7
 shapes[trianglePrismShape.id] = trianglePrismShape;
+changeToOrtho()
+// let pyramid = new Shape(pyramid,,[0.2, 1, 0.2],gl.TRIANGLE_FAN) 
 
 redraw()
 
