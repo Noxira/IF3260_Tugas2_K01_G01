@@ -96,10 +96,10 @@
             </br>
             <b>Projection</b>
             <div>
-                <select id="projection_selector" name="projection_selector">
-                    <option value="0" onclick="changeToOrtho()" selected>Orthogonal</option>
-                    <option value="1" onclick="changeToOblique()">Oblique</option>
-                    <option value="2" onclick="changeToPerspective()">Perspective</option>
+                <select id="projection_selector" name="projection_selector" onchange="updateProjectionChosen()">
+                    <option value="0" selected>Orthogonal</option>
+                    <option value="1" >Oblique</option>
+                    <option value="2" >Perspective</option>
                 </select>
             </div>
             </br>
