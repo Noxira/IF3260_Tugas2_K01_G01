@@ -17,14 +17,14 @@ Aplikasi yang dibuat merupakan aplikasi 3D WebGL Hollow Object berbasis web murn
 _Web browser_ yang mendukung WebGL, HTML5, dan Javascript.
 
 # Instalasi
-1. _Clone repository_ berikut https://github.com/Noxira/IF3260-Grafkom-02/ 
+1. _Clone repository_ berikut https://noxira.github.io/IF3260_Tugas2_K01_G01/
 - Linux
 ```
-git clone git@github.com:Noxira/IF3260-Grafkom-02.git
+git clone git@github.com:Noxira/IF3260_Tugas2_K01_G01.git
 ```
 - Windows
 ```
-git clone https://github.com/Noxira/IF3260-Grafkom-02.git
+git clone https://github.com/Noxira/IF3260_Tugas2_K01_G01
 ```
 2. Buka _file_ index.html menggunakan web browser Anda.
 3. Pastikan canvas berhasil ditampilkan pada halaman _web_ dan tidak ada pesan _error_.
@@ -32,7 +32,7 @@ git clone https://github.com/Noxira/IF3260-Grafkom-02.git
 
 # Alternatif instalasi
 1. Buka _web browser_ anda
-2. Buka halaman ini https://noxira.github.io/IF3260-Grafkom-02/
+2. Buka halaman ini https://noxira.github.io/IF3260_Tugas2_K01_G01/
 3. Selamat bermain!
 
 
