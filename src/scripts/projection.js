@@ -10,9 +10,9 @@ function getSTMat(left, right, bottom, top, near, far){
     c = far - near;
 
     return [
-        [2/a,0,0,-1*(left + right)/a],
-        [0,2/b,0,-1*(top + bottom)/b],
-        [0,0,-2/c,-1*(far + near )/c],
+        [2/a,0,0,(left + right)/a],
+        [0,2/b,0,(top + bottom)/b],
+        [0,0,2/c,(far + near )/c],
         [0,0,0,1]
     ]
 }
@@ -36,8 +36,8 @@ function getProjection(angle, aspect, zMin, zMax, zDist) {
 
 // safe
  function changeToOrtho(){
-     var orthMatrix = [ [1,0,0,0], [0,1,0,0], [0,0,0,0], [0,0,0,1] ];
-     var stMatrix = getSTMat(-1,1,-1,1,1,100);
+     var orthMatrix = [ [1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1] ];
+     var stMatrix = getSTMat(-1,1,-1,1,-1,1);
      
      for(var i = 0; i < 3; i++){
          shapes[i].setProjectionMatrix(multiplyMatrix(orthMatrix, stMatrix));
@@ -47,7 +47,7 @@ function getProjection(angle, aspect, zMin, zMax, zDist) {
 
 // safe
 function changeToPerspective(){
-    var newProj = getProjection(30, canvas.width/canvas.height, 1, 100, 4);
+    var newProj = getProjection(40, canvas.width/canvas.height, -1, 100, 4);
 
     for(var i = 0; i < 3; i++){
         shapes[i].setProjectionMatrix(newProj);
@@ -58,11 +58,10 @@ function changeToPerspective(){
 
 // safe
 function changeToOblique(){
-    var shtMat = [ [1,0,0,0], [0,1,0,0], [0.3,0.3,0,0], [0,0,0,1] ];
-    let newProj = multiplyMatrix(translation(0.3, 0.3, -1), shtMat);
+    var shtMat = [ [1,0,0,0], [0,1,0,0], [0.3,0.3,1,0], [0,0,0,1] ];
 
     for(var i = 0; i < 3; i++){
-        shapes[i].setProjectionMatrix(newProj);
+        shapes[i].setProjectionMatrix(shtMat);
     }
     redraw();
 }

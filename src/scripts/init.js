@@ -25,12 +25,13 @@ function init() {
     }
 
     //Set the Canvas
-    gl.clearColor(1.0, 1.0, 1.0, 1.0);
+    gl.viewport( 0, 0, canvas.width, canvas.height );
+    gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
+    gl.enable(gl.DEPTH_TEST);
+    // Clear the canvas AND the depth buffer.
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    gl.enable(gl.DEPTH_TEST);
-
-    gl.depthFunc(gl.LEQUAL);
+    
 
     //Create Shadder
     const shadderSource = {

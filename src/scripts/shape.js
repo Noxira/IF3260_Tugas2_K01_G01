@@ -11,7 +11,7 @@ class Shape {
         this.curAngleX = 0
         this.curAngleY = 0
         this.curAngleZ = 0
-        this.projection_matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]]
+        this.projection_matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 
         this.baseTranslateX = 0
         this.baseTranslateY = 0
