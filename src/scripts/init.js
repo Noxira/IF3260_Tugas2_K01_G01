@@ -49,7 +49,7 @@ function init() {
             gl_PointSize = 20.0;
             gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vertPosition, 1);
 
-            vnormal = a_normal;
+            vnormal = normalize(a_normal);
         }`,
 
         fragmentShaderSource: `#version 300 es
