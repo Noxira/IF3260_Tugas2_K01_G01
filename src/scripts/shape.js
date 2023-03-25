@@ -73,17 +73,25 @@ class Shape {
     }
 
     getTransformedMatrix() {
-        // TODO : SCALE
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getScalingMatrix(this.scaleX, this.scaleY, this.scaleZ))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationZMatrix(this.curAngleZ))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationYMatrix(this.curAngleY))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationXMatrix(this.curAngleX))
         this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getTranslationMatrix(this.translateX + this.baseTranslateX, this.translateY + this.baseTranslateY, this.translateZ + this.baseTranslateZ))
     }
+
+    getTransformedMatrixNonWebgl(){
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getScalingMatrix(this.scaleX, this.scaleY, this.scaleZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationZMatrix(this.curAngleZ))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationYMatrix(this.curAngleY))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, getRotationXMatrix(this.curAngleX))
+        this.transformationMatrix = multiplyMatrix(this.transformationMatrix, transpose(getTranslationMatrix(this.translateX + this.baseTranslateX, this.translateY + this.baseTranslateY, this.translateZ + this.baseTranslateZ)))
+    }
+
     getTransformedVertices() {
         let vertices = []
         this.reset()
-        this.getTransformedMatrix()
+        this.getTransformedMatrixNonWebgl()
         for (let i = 0; i < this.vertices.length; i += 12) {
             for (let j = 0; j < 12; j += 3) {
                 let newVertex = [[this.vertices[i + j]], [this.vertices[i + j + 1]], [this.vertices[i + j + 2]], [1]]

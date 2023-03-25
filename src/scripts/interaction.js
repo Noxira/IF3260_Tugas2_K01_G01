@@ -6,8 +6,8 @@ var currentRadius = 2.5;
 
 function redraw() {
     for (let id in shapes) {
-        // console.log('draw')
-        // console.log(id)
+        console.log('draw')
+        console.log(id)
         shapes[id].materialize()
     }
 }
@@ -198,17 +198,28 @@ loadBtn.addEventListener("click", function (event) {
         let shapesInput = JSON.parse(event.target.result);
         for (let i = 0; i < shapesInput.length; i++) {
             // console.log(shapesInput[i])
+            let center = getCenterPoint(shapesInput[i].vertices)
+            for(let j=0;j<shapesInput[i].vertices.length;j+=3){
+                shapesInput[i].vertices[j] -= center[0]
+                shapesInput[i].vertices[j+1] -= center[1]
+                shapesInput[i].vertices[j+2] -= center[2]
+            }
             let hollowShape = new Shape(shapesInput[i].vertices, shapesInput[i].normal, shapesInput[i].color, shapesInput[i].webGLShape)
-            shapes[hollowShape.id] = hollowShape
+            shapes[shapesInput[i].id] = hollowShape
+            hollowShape.baseTranslateX = center[0]
+            hollowShape.baseTranslateY = center[1]
+            hollowShape.baseTranslateZ = center[2]
             hollowShape.setId(shapesInput[i].id)
+            console.log("id")
+            console.log(shapesInput[i].id)
             // console.log(shapes);
             // if (i % 3 == 0) {
             //     hollowShape.baseTranslateX = -0.7
             // } else if (i % 3 == 1) {
             //     hollowShape.baseTranslateX = 0.7
             // }
-            redraw();
         }
+        redraw();
     };
     try {
         reader.readAsText(file);
