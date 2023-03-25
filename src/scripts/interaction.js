@@ -2,7 +2,7 @@ var choosenShapeID = 0
 shapes = {}
 var lastViewAngle = 0
 var viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
-var currentRadius = 2.5;
+var currentRadius = 0.3;
 
 function redraw() {
     for (let id in shapes) {
@@ -112,35 +112,31 @@ var labelRotationCamera = document.getElementById('outputRotationCamera')
 var labelZoomCamera = document.getElementById('outputZoomCamera')
 
 sliderCamera.addEventListener("input", function (e) {
-    let center = [0, 0, 2.5 - currentRadius]
-
-    let translationMatrix1 = getTranslationMatrix(-center[0], -center[1], -center[2])
-    viewMatrix = multiplyMatrix(translationMatrix1, viewMatrix)
-
-    let rotationViewMatrix = getRotationYMatrix(sliderCamera.value - lastViewAngle)
-    viewMatrix = multiplyMatrix(rotationViewMatrix, viewMatrix)
-
-    let translationMatrix2 = getTranslationMatrix(center[0], center[1], center[2])
-    viewMatrix = multiplyMatrix(translationMatrix2, viewMatrix)
-
+    viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    
     lastViewAngle = sliderCamera.value
+    let translationMatrix = getTranslationMatrix(-1*(0.3-currentRadius)*Math.cos(toRad(lastViewAngle-90)),0,(0.3-currentRadius)*Math.sin(toRad(lastViewAngle-90)))
+    viewMatrix = multiplyMatrix(viewMatrix, translationMatrix)
+
+    let rotationViewMatrix = getRotationYMatrix(lastViewAngle)
+    viewMatrix = multiplyMatrix(viewMatrix, rotationViewMatrix)
+
 
     labelRotationCamera.innerHTML = sliderCamera.value.toString() + "°"
     redraw()
 })
 
 sliderZoom.addEventListener("input", function (e) {
-    currentRadius = 2.5 - sliderZoom.value / 40
-
-    let center = [0, 0, 2.5 - currentRadius]
+    currentRadius = 0.3 - 0.3 * sliderZoom.value / 100
 
     viewMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 
-    let rotationViewMatrix = getRotationYMatrix(lastViewAngle)
-    viewMatrix = multiplyMatrix(rotationViewMatrix, viewMatrix)
+    let translationMatrix = getTranslationMatrix(-1*(0.3-currentRadius)*Math.cos(toRad(lastViewAngle-90)),0,(0.3-currentRadius)*Math.sin(toRad(lastViewAngle-90)))
+    viewMatrix = multiplyMatrix(viewMatrix, translationMatrix)
 
-    let translationMatrix2 = getTranslationMatrix(center[0], center[1], center[2])
-    viewMatrix = multiplyMatrix(translationMatrix2, viewMatrix)
+    let rotationViewMatrix = getRotationYMatrix(lastViewAngle)
+    viewMatrix = multiplyMatrix(viewMatrix, rotationViewMatrix)
+
 
     redraw()
 })
