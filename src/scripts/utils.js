@@ -2,6 +2,7 @@ let objectPicker = document.getElementById('objectlist');
 objectPicker.selectedIndex = 0;
 let projectionPicker = document.getElementById('projection_selector');
 projectionPicker.selectedIndex = 0;
+document.getElementById('inputFile').value = null;
 
 function min(x, y) {
     if (x < y) {
@@ -98,6 +99,55 @@ function getScalingMatrix(x, y, z) {
 
 function updateObjectChosen() {
     choosenShapeID = objectPicker.value
+    chosenShape = shapes[choosenShapeID]
+    updateAngleValue(shapes[choosenShapeID].curAngleX, shapes[choosenShapeID].curAngleY, shapes[choosenShapeID].curAngleZ)
+    updateTranslationValue(shapes[choosenShapeID].translateX, shapes[choosenShapeID].translateY, shapes[choosenShapeID].translateZ)
+    updateScaleValue(shapes[choosenShapeID].scaleX, shapes[choosenShapeID].scaleY, shapes[choosenShapeID].scaleZ)
+}
+
+function updateAngleValue(x, y, z){
+    sliderX.value = x;
+    sliderY.value = y;
+    sliderZ.value = z;
+    if (x != 0){
+        labelRotationX.innerHTML = x.toString() + "°"
+    } else { labelRotationX.innerHTML = ""}
+    if (y != 0){
+        labelRotationY.innerHTML = y.toString() + "°"
+    } else { labelRotationY.innerHTML = ""}
+    if (z != 0){
+        labelRotationZ.innerHTML = z.toString() + "°"
+    } else { labelRotationZ.innerHTML = ""}
+}
+
+function updateTranslationValue(x, y, z){
+    sliderTranslationX.value = x*100;
+    sliderTranslationY.value = y*100;
+    sliderTranslationZ.value = z*100;
+    if (x != 0){
+        labelTranslationX.innerHTML = x.toString()
+    } else { labelTranslationX.innerHTML = ""}
+    if (y != 0){
+        labelTranslationY.innerHTML = y.toString()
+    } else { labelTranslationY.innerHTML = ""}
+    if (z != 0){
+        labelTranslationZ.innerHTML = z.toString()
+    } else { labelTranslationZ.innerHTML = ""}
+}
+
+function updateScaleValue(x, y, z){
+    sliderScalingX.value = x * 500;
+    sliderScalingY.value = y * 500;
+    sliderScalingZ.value = z * 500;
+    if (x != 1){
+        labelScalingX.innerHTML = x.toString() + "x"
+    } else { labelScalingX.innerHTML = ""}
+    if (y != 1){
+        labelScalingY.innerHTML = y.toString() + "x"
+    } else { labelScalingY.innerHTML = ""}
+    if (z != 1){
+        labelScalingZ.innerHTML = z.toString() + "x"
+    } else { labelScalingZ.innerHTML = ""}
 }
 
 function flatten(mat) {
@@ -278,4 +328,25 @@ function updateProjectionChosen() {
     else if (projectionChosen == 2) {
         changeToPerspective()
     }
+}
+
+function resetObjectLabels(){
+    labelTranslationX.innerHTML = ""
+    labelTranslationY.innerHTML = ""
+    labelTranslationZ.innerHTML = ""
+    labelScalingX.innerHTML = ""
+    labelScalingY.innerHTML = ""
+    labelScalingZ.innerHTML = ""
+    labelRotationX.innerHTML = ""
+    labelRotationY.innerHTML = ""
+    labelRotationZ.innerHTML = ""
+    sliderX.value = 0
+    sliderY.value = 0
+    sliderZ.value = 0
+    sliderTranslationX.value = 0
+    sliderTranslationY.value = 0
+    sliderTranslationZ.value = 0
+    sliderScalingX.value = 500
+    sliderScalingY.value = 500
+    sliderScalingZ.value = 500
 }

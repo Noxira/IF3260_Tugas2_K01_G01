@@ -15,11 +15,14 @@ function redraw() {
 var sliderTranslationX = document.getElementById("sliderTranslationX")
 var sliderTranslationY = document.getElementById("sliderTranslationY")
 var sliderTranslationZ = document.getElementById("sliderTranslationZ")
+var labelTranslationX =  document.getElementById('outputTranslationX')
+var labelTranslationY =  document.getElementById('outputTranslationY')
+var labelTranslationZ =  document.getElementById('outputTranslationZ')
 
 sliderTranslationX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
-        document.getElementById('outputTranslationX').innerHTML = sliderTranslationX.value / 100
+        labelTranslationX.innerHTML = sliderTranslationX.value / 100
         redraw()
     }
 })
@@ -27,7 +30,7 @@ sliderTranslationX.addEventListener("input", function (e) {
 sliderTranslationY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
-        document.getElementById('outputTranslationY').innerHTML = sliderTranslationY.value / 100
+        labelTranslationY.innerHTML = sliderTranslationY.value / 100
         redraw()
     }
 })
@@ -35,7 +38,7 @@ sliderTranslationY.addEventListener("input", function (e) {
 sliderTranslationZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].translate(sliderTranslationX.value / 100, sliderTranslationY.value / 100, sliderTranslationZ.value / 100)
-        document.getElementById('outputTranslationZ').innerHTML = sliderTranslationZ.value / 100
+        labelTranslationZ.innerHTML = sliderTranslationZ.value / 100
         redraw()
     }
 })
@@ -44,11 +47,14 @@ sliderTranslationZ.addEventListener("input", function (e) {
 var sliderScalingX = document.getElementById("sliderScalingX")
 var sliderScalingY = document.getElementById("sliderScalingY")
 var sliderScalingZ = document.getElementById("sliderScalingZ")
+var labelScalingX = document.getElementById('outputSx')
+var labelScalingY = document.getElementById('outputSy')
+var labelScalingZ = document.getElementById('outputSz')
 
 sliderScalingX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].scale(sliderScalingX.value / 500, sliderScalingY.value / 500, sliderScalingZ.value / 500)
-        document.getElementById('outputSx').innerHTML = (sliderScalingX.value / 500).toString() + "x"
+        labelScalingX.innerHTML = (sliderScalingX.value / 500).toString() + "x"
         redraw()
     }
 })
@@ -56,7 +62,7 @@ sliderScalingX.addEventListener("input", function (e) {
 sliderScalingY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].scale(sliderScalingX.value / 500, sliderScalingY.value / 500, sliderScalingZ.value / 500)
-        document.getElementById('outputSy').innerHTML = (sliderScalingY.value / 500).toString() + "x"
+        labelScalingY.innerHTML = (sliderScalingY.value / 500).toString() + "x"
         redraw()
     }
 })
@@ -64,39 +70,47 @@ sliderScalingY.addEventListener("input", function (e) {
 sliderScalingZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].scale(sliderScalingX.value / 500, sliderScalingY.value / 500, sliderScalingZ.value / 500)
-        document.getElementById('outputSz').innerHTML = (sliderScalingZ.value / 500).toString() + "x"
+        labelScalingZ.innerHTML = (sliderScalingZ.value / 500).toString() + "x"
         redraw()
     }
 })
 
 var sliderX = document.getElementById("sliderRotationX")
+var sliderY = document.getElementById("sliderRotationY")
+var sliderZ = document.getElementById("sliderRotationZ")
+var labelRotationX = document.getElementById('outputRotationX')
+var labelRotationY = document.getElementById('outputRotationY')
+var labelRotationZ = document.getElementById('outputRotationZ')
+
 sliderX.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].rotateX(sliderX.value)
-        document.getElementById('outputRotationX').innerHTML = sliderX.value.toString() + "°"
+        labelRotationX.innerHTML = sliderX.value.toString() + "°"
         redraw()
     }
 })
 
-var sliderY = document.getElementById("sliderRotationY")
 sliderY.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].rotateY(sliderY.value)
-        document.getElementById('outputRotationY').innerHTML = sliderY.value.toString() + "°"
+        labelRotationY.innerHTML = sliderY.value.toString() + "°"
         redraw()
     }
 })
 
-var sliderZ = document.getElementById("sliderRotationZ")
 sliderZ.addEventListener("input", function (e) {
     if (choosenShapeID != null) {
         shapes[choosenShapeID].rotateZ(sliderZ.value)
-        document.getElementById('outputRotationZ').innerHTML = sliderZ.value.toString() + "°"
+        labelRotationZ.innerHTML = sliderZ.value.toString() + "°"
         redraw()
     }
 })
 
 var sliderCamera = document.getElementById("sliderRotationCamera")
+var sliderZoom = document.getElementById("sliderZoomCamera")
+var labelRotationCamera = document.getElementById('outputRotationCamera')
+var labelZoomCamera = document.getElementById('outputZoomCamera')
+
 sliderCamera.addEventListener("input", function (e) {
     let center = [0, 0, 2.5 - currentRadius]
 
@@ -111,11 +125,10 @@ sliderCamera.addEventListener("input", function (e) {
 
     lastViewAngle = sliderCamera.value
 
-    document.getElementById('outputRotationCamera').innerHTML = sliderCamera.value.toString() + "°"
+    labelRotationCamera.innerHTML = sliderCamera.value.toString() + "°"
     redraw()
 })
 
-var sliderZoom = document.getElementById("sliderZoomCamera")
 sliderZoom.addEventListener("input", function (e) {
     currentRadius = 2.5 - sliderZoom.value / 40
 
@@ -129,7 +142,6 @@ sliderZoom.addEventListener("input", function (e) {
     let translationMatrix2 = getTranslationMatrix(center[0], center[1], center[2])
     viewMatrix = multiplyMatrix(translationMatrix2, viewMatrix)
 
-    // document.getElementById('outputZoomCamera').innerHTML = sliderZoom.value.toString() + "°"
     redraw()
 })
 
@@ -153,26 +165,9 @@ resetBtn.addEventListener("click", function (e) {
         shapes[id].resetTransformation()
     }
     changeToOrtho()
-    sliderX.value = 0
-    sliderY.value = 0
-    sliderZ.value = 0
-    sliderScalingX.value = 1
-    sliderScalingY.value = 1
-    sliderScalingZ.value = 1
-    sliderTranslationX.value = 0
-    sliderTranslationY.value = 0
-    sliderTranslationZ.value = 0
+    resetObjectLabels()
     sliderCamera.value = 0
     sliderZoom.value = 0
-    document.getElementById('outputRotationX').innerHTML = ""
-    document.getElementById('outputRotationY').innerHTML = ""
-    document.getElementById('outputRotationZ').innerHTML = ""
-    document.getElementById('outputTranslationX').innerHTML = ""
-    document.getElementById('outputTranslationY').innerHTML = ""
-    document.getElementById('outputTranslationZ').innerHTML = ""
-    document.getElementById('outputSx').innerHTML = ""
-    document.getElementById('outputSy').innerHTML = ""
-    document.getElementById('outputSz').innerHTML = ""
     document.getElementById('outputRotationCamera').innerHTML = ""
     redraw()
 })
@@ -269,16 +264,15 @@ window.addEventListener('load', function () {
 // Dummy data
 triplePrismShape = new Shape(triplePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 shapes[triplePrismShape.id] = triplePrismShape
-simplePyramidShape = new Shape(pyramidVertices, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
-simplePyramidShape.setId(1);
-simplePyramidShape.baseTranslateX = 0.7
-shapes[simplePyramidShape.id] = simplePyramidShape
+boxedBoxShape = new Shape(boxedBoxVertices, boxedBoxNormals, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
+boxedBoxShape.setId(1);
+boxedBoxShape.baseTranslateX = 0.7
+shapes[boxedBoxShape.id] = boxedBoxShape
 trianglePrismShape = new Shape(trianglePrism, normalTrianglePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 trianglePrismShape.setId(2);
 triplePrismShape.baseTranslateX = -0.7
 shapes[trianglePrismShape.id] = trianglePrismShape;
 changeToOrtho()
-// let pyramid = new Shape(pyramid,,[0.2, 1, 0.2],gl.TRIANGLE_FAN) 
 
 redraw()
 
