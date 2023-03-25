@@ -27,12 +27,10 @@ class Shape {
     }
 
     materialize() {
-        this.reset()
-        console.log(this.getTransformedVertices())
-        this.reset()
-        this.getTransformedMatrix()
         let vertices = this.vertices
         let normal = this.getTransformedNormal()
+        this.reset()
+        this.getTransformedMatrix()
         gl.uniformMatrix4fv(projectionMatrixLocation, false, flatten(this.projection_matrix));
         gl.uniformMatrix4fv(modelMatrixLocation, false, flatten(this.transformationMatrix));
         gl.uniformMatrix4fv(viewMatrixLocation, false, flatten(viewMatrix))
@@ -107,6 +105,8 @@ class Shape {
     }
     getTransformedNormal() {
         let normal = []
+        this.reset()
+        this.getTransformedMatrix()
         let invTransposeMat = transpose(inverse(this.transformationMatrix))
         // console.log(this.transformationMatrix)
         // console.log(invTransposeMat)
