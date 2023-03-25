@@ -164,15 +164,6 @@ resetBtn.addEventListener("click", function (e) {
     resetObjectLabels()
     sliderCamera.value = 0
     sliderZoom.value = 0
-    document.getElementById('outputRotationX').innerHTML = ""
-    document.getElementById('outputRotationY').innerHTML = ""
-    document.getElementById('outputRotationZ').innerHTML = ""
-    document.getElementById('outputTranslationX').innerHTML = ""
-    document.getElementById('outputTranslationY').innerHTML = ""
-    document.getElementById('outputTranslationZ').innerHTML = ""
-    document.getElementById('outputSx').innerHTML = ""
-    document.getElementById('outputSy').innerHTML = ""
-    document.getElementById('outputSz').innerHTML = ""
     document.getElementById('outputRotationCamera').innerHTML = ""
     redraw()
 })

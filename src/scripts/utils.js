@@ -121,9 +121,9 @@ function updateAngleValue(x, y, z){
 }
 
 function updateTranslationValue(x, y, z){
-    sliderTranslationX.value = x;
-    sliderTranslationY.value = y;
-    sliderTranslationZ.value = z;
+    sliderTranslationX.value = x*100;
+    sliderTranslationY.value = y*100;
+    sliderTranslationZ.value = z*100;
     if (x != 0){
         labelTranslationX.innerHTML = x.toString()
     } else { labelTranslationX.innerHTML = ""}
