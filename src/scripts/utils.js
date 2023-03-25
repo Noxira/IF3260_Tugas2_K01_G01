@@ -265,3 +265,17 @@ function translation(tx, ty, tz) {
         [tx, ty, tz, 1],
     ];
 }
+
+function updateProjectionChosen() {
+    let projectionChosen = projectionPicker.value;
+    // switch case projectionChosen for 0, 1, 2
+    if (projectionChosen == 0) {
+        changeToOrtho()
+    }
+    else if (projectionChosen == 1) {
+        changeToOblique()
+    }
+    else if (projectionChosen == 2) {
+        changeToPerspective()
+    }
+}
