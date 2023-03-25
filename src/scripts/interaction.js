@@ -246,7 +246,7 @@ simplePyramidShape = new Shape(pyramidVertices, normalTriplePrism, [0.2, 1, 0.2]
 simplePyramidShape.setId(1);
 simplePyramidShape.baseTranslateX = 0.7
 shapes[simplePyramidShape.id] = simplePyramidShape
-trianglePrismShape = new Shape(trianglePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
+trianglePrismShape = new Shape(trianglePrism, normalTrianglePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 trianglePrismShape.setId(2);
 triplePrismShape.baseTranslateX = -0.7
 shapes[trianglePrismShape.id] = trianglePrismShape;

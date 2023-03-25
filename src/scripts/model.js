@@ -208,16 +208,45 @@ var trianglePrism = [
     -0.8999999999999999, 0.2, 0.2, -0.8999999999999999, 0.18, 0.2, -0.8999999999999999, 0.18, -0.2, -0.8999999999999999, 0.2, -0.2
 ]
 
+var normalTrianglePrism = [
+    // back-right face, shape: rectangle with 4 edges (4 edges represents a hollow with rectangle shape)
+    1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
+    1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
+    1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
+    1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
+
+    // front face, shape: rectangle with 4 edges (4 edges represents a hollow with rectangle shape)
+    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+
+    // bottom, shape: triangle include 3D representation using 4 edges
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+    0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
+
+    // top, shape: triangle include 3D representation using 4 edges
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+    0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+
+    // back-left face, shape: rectangle with 4 edges (4 edges represents a hollow with rectangle shape)
+    -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
+    -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
+    -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
+    -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0
+]
 let centerTrianglePrism = getCenterPoint(trianglePrism)
-for(let i=0;i<trianglePrism.length;i+=3){
+for (let i = 0; i < trianglePrism.length; i += 3) {
     trianglePrism[i] -= centerTrianglePrism[0]
-    trianglePrism[i+1] -= centerTrianglePrism[1]
-    trianglePrism[i+2] -= centerTrianglePrism[2]
+    trianglePrism[i + 1] -= centerTrianglePrism[1]
+    trianglePrism[i + 2] -= centerTrianglePrism[2]
 }
 
 let centerPyramidVertices = getCenterPoint(pyramidVertices)
-for(let i=0;i<trianglePrism.length;i+=3){
+for (let i = 0; i < trianglePrism.length; i += 3) {
     pyramidVertices[i] -= pyramidVertices[0]
-    pyramidVertices[i+1] -= pyramidVertices[1]
-    pyramidVertices[i+2] -= pyramidVertices[2]
+    pyramidVertices[i + 1] -= pyramidVertices[1]
+    pyramidVertices[i + 2] -= pyramidVertices[2]
 }
