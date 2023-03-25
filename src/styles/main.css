@@ -3,7 +3,7 @@ body {
     min-height: 1080/2;
 }
 
-.title > h1 {
+.title>h1 {
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -30,7 +30,7 @@ body {
     align-self: flex-end;
 }
 
-.gui > div {
+.gui>div {
     margin: 10px;
 }
 
@@ -38,18 +38,18 @@ body {
     margin: 0px;
     width: 20vw;
     min-width: 300px;
-    min-height: 600px;
+    min-height: 650px;
     height: 42.5vw;
     width: 20vw;
     border: 2px solid black;
     background-color: white;
 }
 
-.toolbar > * {
+.toolbar>* {
     margin-left: 10px;
 }
 
-.canvas > canvas {
+.canvas>canvas {
     border: 2px solid black;
     background-color: white;
     border-radius: 10px;
@@ -57,4 +57,40 @@ body {
     min-height: 500px;
     height: 35vw;
     width: 35vw;
+}
+
+/* MODAL STYLES
+Reference: https://jasonwatmore.com/post/2023/01/04/vanilla-js-css-modal-popup-dialog-tutorial-with-example
+-------------------------------*/
+.jw-modal {
+    /* modals are hidden by default */
+    display: none;
+
+    /* modal container fixed across whole screen */
+    position: fixed;
+    inset: 0;
+
+    /* z-index must be higher than everything else on the page */
+    z-index: 10000;
+
+    /* semi-transparent black background exposed by padding */
+    background-color: rgba(0, 0, 0, .75);
+    padding: 40px;
+
+    /* enables scrolling for tall modals */
+    overflow: auto;
+}
+
+.jw-modal.open {
+    display: block;
+}
+
+.jw-modal-body {
+    padding: 20px;
+    background: #fff;
+}
+
+body.jw-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
 }

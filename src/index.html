@@ -105,6 +105,7 @@
             </br>
             <b>Others</b>
             <div>
+                <button onclick="openModal('modal-1')">Help</button>
                 <button id="resetBtn">Reset</button>
                 <button id="saveBtn">Save</button>
                 <button id="loadBtn">Load</button>
@@ -120,6 +121,60 @@
                     mungkin nanti ada di sisi kanan jg, gtw
                     butuh ditambahin class toolbar nanti klo emg jadi
                 -->
+        </div>
+    </div>
+    <!-- modal for help -->
+    <!-- Reference: https://jasonwatmore.com/post/2023/01/04/vanilla-js-css-modal-popup-dialog-tutorial-with-example -->
+    <div>
+        <div id="modal-1" class="jw-modal">
+            <div class="jw-modal-body">
+                <h1>Help</h1>
+                <p>
+                    1. Website ini dibuat dengan menggunakan WebGL Murni.
+                    <br>
+                    2. Terdapat 3 buah model objek berongga (hollow objects).
+                    <br>
+                    3. Koordinat dan warna untuk setiap objek dapat disimpan ke dalam suatu file dengan menekan tombol
+                    "Save".
+                    <br>
+                    4. Model yang telah disimpan dapat dibuka dengan menekan tombol "Choose File" untuk memilih file
+                    json terkait kemudian menekan tombol "Load".
+                    <br>
+                    5. Terdapat berbaga interaksi untuk view model. Berikut merupakan detail dari setiap interaksi yang
+                    dapat dilakukan beserta caranya.
+                    <br>
+                    &emsp; a. Jenis proyeksi untuk menampilkan semua objek dapat diubah dengan memilih jenis
+                    "Projection",
+                    apakah orthographic, oblique, atau perspective.
+                    <br>
+                    &emsp; b. Dapat dilakukan rotasi untuk setiap objek dengan cara mengatur derajat rotasi untuk setiap
+                    sumbu
+                    (Angle X, Angle Y, Angle Z) pada bagian "Set object angle".
+                    <br>
+                    &emsp; c. Dapat dilakukan translasi untuk setiap objek dengan cara mengatur besar perpindahan di
+                    setiap
+                    sumbu
+                    (X, Y, Z) pada bagian "Translation".
+                    <br>
+                    &emsp; d. Dapat dilakukan scaling untuk setiap objek dengan cara mengatur besar perubahan ukuran di
+                    setiap
+                    sumbu
+                    (Sx, Sy, Sz) pada bagian "Scaling".
+                    <br>
+                    &emsp; e. Dapat dilakukan pengubahan jarak (radius) kamera view untuk mendekat atau menjauh dari
+                    model
+                    dengan mengatur besaran zoom pada "Set Camera".
+                    <br>
+                    &emsp; f. Dapat dilakukan pengitaran objek-objek oleh kamera view dengan mengatur "Angle" pada "Set
+                    Camera".
+                    <br>
+                    &emsp; g. Dapat dilakukan reset view ke default untuk mengembalikan model pada kondsi awal.
+                    <br>
+                    6. Shading dapat di-ON atau di-OFF kan pada saat penggambaran model dengan mencentang bagian
+                    "useShading".
+                </p>
+                <button onclick="closeModal()">Close</button>
+            </div>
         </div>
     </div>
 </body>
