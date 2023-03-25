@@ -2,6 +2,7 @@ let objectPicker = document.getElementById('objectlist');
 objectPicker.selectedIndex = 0;
 let projectionPicker = document.getElementById('projection_selector');
 projectionPicker.selectedIndex = 0;
+document.getElementById('inputFile').value = null;
 
 function min(x, y) {
     if (x < y) {
