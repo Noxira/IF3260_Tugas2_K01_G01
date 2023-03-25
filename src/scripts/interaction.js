@@ -253,10 +253,10 @@ window.addEventListener('load', function () {
 // Dummy data
 triplePrismShape = new Shape(triplePrism, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 shapes[triplePrismShape.id] = triplePrismShape
-simplePyramidShape = new Shape(pyramidVertices, normalTriplePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
-simplePyramidShape.setId(1);
-simplePyramidShape.baseTranslateX = 0.7
-shapes[simplePyramidShape.id] = simplePyramidShape
+boxedBoxShape = new Shape(boxedBoxVertices, boxedBoxNormals, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
+boxedBoxShape.setId(1);
+boxedBoxShape.baseTranslateX = 0.7
+shapes[boxedBoxShape.id] = boxedBoxShape
 trianglePrismShape = new Shape(trianglePrism, normalTrianglePrism, [0.2, 1, 0.2], gl.TRIANGLE_FAN)
 trianglePrismShape.setId(2);
 triplePrismShape.baseTranslateX = -0.7
