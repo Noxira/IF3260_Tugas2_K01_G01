@@ -138,4 +138,3 @@ function init() {
 
 //Initialize the WebGL
 init();
-console.log(projectionMatrixLocation);
