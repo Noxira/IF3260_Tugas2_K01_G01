@@ -4,18 +4,18 @@ function degToRad(degrees)
   return degrees * (pi/180);
 }
 
-// function getSTMat(left, right, bottom, top, near, far){
-//     var a = right - left;
-//     b = top - bottom;
-//     c = far - near;
+function getSTMat(left, right, bottom, top, near, far){
+    var a = right - left;
+    b = top - bottom;
+    c = far - near;
 
-//     return [
-//         [2/a,0,0,(left + right)/a],
-//         [0,2/b,0,(top + bottom)/b],
-//         [0,0,2/c,(far + near )/c],
-//         [0,0,0,1]
-//     ]
-// }
+    return [
+        [2/a,0,0,(left + right)/a],
+        [0,2/b,0,(top + bottom)/b],
+        [0,0,2/c,(far + near )/c],
+        [0,0,0,1]
+    ]
+}
 
 function getProjection(angle, aspect, zMin, zMax, zDist) {
     var top = Math.tan(degToRad(angle)/2) * zMin;
@@ -35,11 +35,10 @@ function getProjection(angle, aspect, zMin, zMax, zDist) {
   
 
  function changeToOrtho(){
-    //  var orthMatrix = [ [1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1] ];
-    //  var stMatrix = getSTMat(-1,1,-1,1,-1,1);
+     var stMatrix = getSTMat(-1,1,-1,1,-1,1);
      
      for(var i = 0; i < 3; i++){
-         shapes[i].setProjectionMatrix([ [1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1] ]);
+         shapes[i].setProjectionMatrix(stMatrix);
         }
         redraw();
 }

@@ -6,8 +6,6 @@ var currentRadius = 0.3;
 
 function redraw() {
     for (let id in shapes) {
-        console.log('draw')
-        console.log(id)
         shapes[id].materialize()
     }
 }
@@ -173,9 +171,6 @@ saveBtn.addEventListener("click", function (event) {
     let savedShapes = [];
     for (let i in shapes) {
         let shape = shapes[i];
-        // console.log(shape);
-        // console.log(shape.vertices)
-        // console.log(shape.getTransformedVertices())
         let savedShape = {
             "id": shape.id,
             "vertices": shape.getTransformedVertices(),
@@ -198,12 +193,10 @@ saveBtn.addEventListener("click", function (event) {
 var loadBtn = document.getElementById("loadBtn")
 loadBtn.addEventListener("click", function (event) {
     let file = document.getElementById("inputFile").files[0];
-    // console.log(file)
     let reader = new FileReader();
     reader.onload = function (event) {
         let shapesInput = JSON.parse(event.target.result);
         for (let i = 0; i < shapesInput.length; i++) {
-            // console.log(shapesInput[i])
             let center = getCenterPoint(shapesInput[i].vertices)
             for (let j = 0; j < shapesInput[i].vertices.length; j += 3) {
                 shapesInput[i].vertices[j] -= center[0]
@@ -216,14 +209,6 @@ loadBtn.addEventListener("click", function (event) {
             hollowShape.baseTranslateY = center[1]
             hollowShape.baseTranslateZ = center[2]
             hollowShape.setId(shapesInput[i].id)
-            console.log("id")
-            console.log(shapesInput[i].id)
-            // console.log(shapes);
-            // if (i % 3 == 0) {
-            //     hollowShape.baseTranslateX = -0.7
-            // } else if (i % 3 == 1) {
-            //     hollowShape.baseTranslateX = 0.7
-            // }
         }
         redraw();
     };

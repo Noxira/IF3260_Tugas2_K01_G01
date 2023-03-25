@@ -67,7 +67,6 @@ function getCenterPoint(vertices) {
     let ret = [0, 0, 0]
     let mnm = [1, 1, 1]
     let mxm = [-1, -1, -1]
-    // console.log(vertices)
     for (let i = 0; i < vertices.length; i++) {
         if (i % 3 == 0) {
             mnm[0] = min(mnm[0], vertices[i])
@@ -350,29 +349,3 @@ function resetObjectLabels(){
     sliderScalingY.value = 500
     sliderScalingZ.value = 500
 }
-
-// function cross(v1,v2){
-//     let res = [0,0,0]
-//     res[0] = v1[1]*v2[2]-v1[2]*v2[1]
-//     res[1] = v1[2]*v2[0]-v1[0]*v2[2]
-//     res[2] = v1[0]*v2[1]-v1[1]*v2[0]
-//     return res
-// }
-
-// function getListNormal(vertices){
-//     let normal = []
-//     for(let i=0;i<vertices.length;i+=12){
-//         let v1 = [vertices[i+3]-vertices[i],vertices[i+4]-vertices[i+1],vertices[i+5]-vertices[i+2]]
-//         let v2 = [vertices[i+6]-vertices[i+3],vertices[i+7]-vertices[i+4],vertices[i+8]-vertices[i+5]]
-
-//         let crossRes = cross(v1,v2)
-//         for(let j=0;j<4;j++){
-//             for(let k=0;k<3;k++){
-//                 normal.push(crossRes[k])
-//             }
-//         }
-//     }
-//     console.log('normal')
-//     console.log(normal)
-//     return normal
-// }

@@ -20,15 +20,11 @@ var baseTriplePrism = [
     -w, l, d, w, l, d, w, l, -d, -w, l, -d,
     -w, -l, -d, -w, -l, d, -w, l, d, -w, l, -d,
     w, -l, -d, w, -l, d, w, l, d, w, l, -d,
-    // 3. edge in side
+    // 4. edge in side
     -w + d, -l + d, -d, w - d, -l + d, -d, w - d, -l + d, d, -w + d, -l + d, d,
     -w + d, l - d, d, w - d, l - d, d, w - d, l - d, -d, -w + d, l - d, -d,
     -w + d, -l + d, -d, -w + d, -l + d, d, -w + d, l - d, d, -w + d, l - d, -d,
     w - d, -l + d, -d, w - d, -l + d, d, w - d, l - d, d, w - d, l - d, -d
-
-    // Horizontal 1 plane
-    // 1. front side
-
 ]
 
 var baseNormalTriplePrism = [
@@ -48,7 +44,7 @@ var baseNormalTriplePrism = [
     0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
     -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
-    // 3. edge in side
+    // 4. edge in side
     0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
     0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
@@ -71,7 +67,7 @@ var baseNormalTriplePrism = [
     0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1,
     0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
     0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
-    // edge in side
+    // 4. edge in side
     0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1,
     0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
     0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,
@@ -93,7 +89,7 @@ var baseNormalTriplePrism = [
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
     0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
     0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1,
-    // 3. edge in side
+    // 4. edge in side
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
     -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
     0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1,

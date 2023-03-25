@@ -108,8 +108,6 @@ class Shape {
         this.reset()
         this.getTransformedMatrix()
         let invTransposeMat = transpose(inverse(this.transformationMatrix))
-        // console.log(this.transformationMatrix)
-        // console.log(invTransposeMat)
         for (let i = 0; i < this.normal.length; i += 12) {
             for (let j = 0; j < 12; j += 3) {
                 let newNormal = [[this.normal[i + j]], [this.normal[i + j + 1]], [this.normal[i + j + 2]], [0]]
@@ -118,13 +116,9 @@ class Shape {
                 normal.push(retMat[0][0], retMat[1][0], retMat[2][0])
             }
         }
-        // console.log(normal)
         return normal
     }
 
-    applyAllTransformation() {
-
-    }
     setId(id) {
         this.id = id
     }
